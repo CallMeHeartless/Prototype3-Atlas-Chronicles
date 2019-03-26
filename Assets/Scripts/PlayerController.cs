@@ -32,17 +32,29 @@ public class PlayerController : MonoBehaviour
     void Update(){
         m_MovementDirection = Vector3.zero;
         CalculatePlayerMovement();
+        CalculatePlayerRotation();
+
+        // Move the player
+        m_CharacterController.Move(m_MovementDirection * m_fMovementSpeed * Time.deltaTime);
     }
 
     // Calculate movement
     private void CalculatePlayerMovement() {
-        // Get free look camera rotation
-        Vector3 vecCameraRotation = m_CameraReference.transform.eulerAngles;
-        print(vecCameraRotation);
         // Take player input
-
-
+        m_MovementDirection = (m_CameraReference.transform.right * Input.GetAxis("Horizontal") + m_CameraReference.transform.forward * Input.GetAxis("Vertical")).normalized;
+        m_MovementDirection.y = -9.81f;
 
         // Add gravity
+    }
+
+    // Rotates the player to look in the direction they are moving
+    private void CalculatePlayerRotation() {
+        // Prevent turning when stationary
+        if(m_MovementDirection.sqrMagnitude == 0) {
+            return;
+        }
+        Vector3 vecLookDirection = m_MovementDirection;
+        vecLookDirection.y = 0.0f;
+        transform.rotation = Quaternion.LookRotation(vecLookDirection);
     }
 }
