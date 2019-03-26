@@ -85,6 +85,7 @@ public class PlayerController : MonoBehaviour {
             // Jump code
             if (Input.GetKeyDown(KeyCode.Space)) { // Change this here
                 m_fVerticalVelocity = m_fJumpPower;
+                m_fGravityMulitplier = 1.0f;
                 if (!m_CharacterController.isGrounded) {
                     m_bCanDoubleJump = false;
                 }
@@ -108,6 +109,7 @@ public class PlayerController : MonoBehaviour {
             m_fGravityMulitplier = 1.0f;
         } else {
             m_fGravityMulitplier *= 1.1f;
+            Mathf.Clamp(m_fGravityMulitplier, 1.0f, 20.0f);
         }
         print(m_fGravityMulitplier);
     }
