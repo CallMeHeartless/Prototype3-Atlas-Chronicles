@@ -25,7 +25,10 @@ public class PlayerController : MonoBehaviour {
     private Vector3 m_MovementDirection;
     private bool m_bCanDoubleJump = true;
     private float m_fVerticalVelocity = 0.0f;
-    private float m_fGravityMulitplier = 4.0f;
+    private float m_fGravityMulitplier = 1.0f;
+    [SerializeField]
+    private float m_fFloatTime = 2.0f;
+    private float m_fFloatTimer = 0.0f;
 
     // Start is called before the first frame update
     void Start(){
@@ -48,11 +51,13 @@ public class PlayerController : MonoBehaviour {
 
     }
 
+    // Handles all of the functions that determine the vector to move the player, then move them
     private void HandlePlayerMovement() {
         CalculatePlayerMovement();
         CalculatePlayerRotation();
         ApplyGravity();
         Jump();
+        //ProcessFloat();
         m_MovementDirection.y += m_fVerticalVelocity * Time.deltaTime;
 
         // Move the player
@@ -79,13 +84,14 @@ public class PlayerController : MonoBehaviour {
 
     // Performs a simple jump
     private void Jump() {
+        //print("isGrounded: " + m_CharacterController.isGrounded + " doubleJump: " + m_bCanDoubleJump + " cTimer: " + m_fCoyoteTimer);
         // Handle jump input
-        if(m_CharacterController.isGrounded || m_bCanDoubleJump || m_fCoyoteTimer < m_fCoyoteTime) {
-            print("grounded: " + m_CharacterController.isGrounded + " dj: " + m_bCanDoubleJump + " ctimer: " + m_fCoyoteTimer);
+        if (m_CharacterController.isGrounded || m_bCanDoubleJump || m_fCoyoteTimer < m_fCoyoteTime) {
             // Jump code
             if (Input.GetKeyDown(KeyCode.Space)) { // Change this here
                 m_fVerticalVelocity = m_fJumpPower;
                 m_fGravityMulitplier = 1.0f;
+                // Control use of double jump
                 if (!m_CharacterController.isGrounded) {
                     m_bCanDoubleJump = false;
                 }
@@ -109,8 +115,19 @@ public class PlayerController : MonoBehaviour {
             m_fGravityMulitplier = 1.0f;
         } else {
             m_fGravityMulitplier *= 1.1f;
-            Mathf.Clamp(m_fGravityMulitplier, 1.0f, 20.0f);
+            m_fGravityMulitplier = Mathf.Clamp(m_fGravityMulitplier, 1.0f, 20.0f);
         }
-        print(m_fGravityMulitplier);
+        m_fVerticalVelocity = Mathf.Clamp(m_fVerticalVelocity, -100.0f, 100.0f);
+    }
+
+    private void ProcessFloat() {
+        if (!m_CharacterController.isGrounded) {
+            if(Input.GetKey(KeyCode.Space) && m_fFloatTimer < m_fFloatTime) {
+                m_fVerticalVelocity = -0.1f;
+                m_fFloatTimer += Time.deltaTime;
+            }
+        } else {
+            m_fFloatTimer = 0.0f;
+        }
     }
 }
