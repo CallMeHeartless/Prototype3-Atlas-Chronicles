@@ -11,6 +11,7 @@ public class telescope : MonoBehaviour
     public float delay= 2;
     public float loading = 2;
     public GameObject camera;
+   
     void Start()
     {
         
@@ -23,42 +24,59 @@ public class telescope : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                if (looking)
+                UIInfo();
+            }
+            else
+            {
+                delay -= Time.deltaTime;
+            }
+
+
+        }
+        void updateNewView()
+        {
+            if (looking)
+            {
+                StartCoroutine("zoom");  //gameObject.GetComponent<Camera>().fieldOfView = newPOV;
+            }
+            else
+            {
+                transform.GetChild(0).gameObject.SetActive(false);
+                camera.GetComponent<Camera>().fieldOfView = POVNormal;
+            }
+            looking = !looking;
+            loading = 2;
+
+
+        }
+
+        void UIInfo()
+        {
+            if (delay <= 0)
+            {
+                if (Input.GetKeyDown(KeyCode.Q))
                 {
-                    camera.GetComponent<Camera>().fieldOfView = newPOV;
-                    transform.GetChild(0).gameObject.SetActive(true);
-                    transform.GetChild(1).gameObject.SetActive(false);
+                    if (looking)
+                    {
+                        camera.GetComponent<Camera>().fieldOfView = newPOV;
+                        transform.GetChild(0).gameObject.SetActive(true);
+                        transform.GetChild(1).gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        camera.GetComponent<Camera>().fieldOfView = POVNormal;
+                        transform.GetChild(0).gameObject.SetActive(false);
+                        transform.GetChild(1).gameObject.SetActive(true);
+                    }
+                    looking = !looking;
+                    delay = 2;
                 }
-                else
-                {
-                    camera.GetComponent<Camera>().fieldOfView = POVNormal;
-                    transform.GetChild(0).gameObject.SetActive(false);
-                    transform.GetChild(1).gameObject.SetActive(true);
-                }
-                looking = !looking;
-                delay = 2;
+            }
+            else
+            {
+                delay -= Time.deltaTime;
             }
         }
-        else
-        {
-            delay -= Time.deltaTime;
-        }
-    }
-    void updateNewView()
-    {
-        if (looking)
-        {
-            StartCoroutine("zoom");  //gameObject.GetComponent<Camera>().fieldOfView = newPOV;
-        }
-        else
-        {
-            transform.GetChild(0).gameObject.SetActive(false);
-            camera.GetComponent<Camera>().fieldOfView = POVNormal;
-        }
-        looking = !looking;
-        loading = 2;
-
-        
     }
 
     IEnumerator zoom()
