@@ -125,8 +125,12 @@ public class PlayerController : MonoBehaviour {
     private void ApplyGravity() {
         // Check if floating
         if (m_bIsFloating) {
-            m_fGravityMulitplier = m_fFloatGravityReduction;
+         //   m_fGravityMulitplier = m_fFloatGravityReduction;
         }
+        if (m_CharacterController.isGrounded) {
+            return;
+        }
+
         m_fVerticalVelocity += Physics.gravity.y * m_fGravityMulitplier *  Time.deltaTime;
         if (m_CharacterController.isGrounded) {
             m_fGravityMulitplier = 1.0f;
@@ -148,6 +152,7 @@ public class PlayerController : MonoBehaviour {
         } else {
             m_fFloatTimer = 0.0f;
             m_bIsFloating = false;
+            //m_fGravityMulitplier = 1.0f;
         }
     }
 }
