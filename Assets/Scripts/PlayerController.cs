@@ -7,12 +7,14 @@ using Cinemachine;
 public class PlayerController : MonoBehaviour {
 
     // External references
+    [Header("External References")]
     [SerializeField]
     private Camera m_CameraReference;
 
     // Component references
     private CharacterController m_CharacterController;
 
+#region INTERNAL_VARIABLES
     // Movement variables
     [Header("Movement Variables")]
     [SerializeField]
@@ -29,6 +31,16 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private float m_fFloatTime = 2.0f;
     private float m_fFloatTimer = 0.0f;
+    [SerializeField]
+    private float m_fFloatGravityReduction = 0.8f;
+    private bool m_bIsFloating = false;
+
+    // Combat variables
+    [Header("Combat Variables")]
+    [SerializeField]
+    private int m_iMaxHealth = 4;
+    private int m_iCurrentHealth;
+#endregion
 
     // Start is called before the first frame update
     void Start(){
@@ -37,6 +49,7 @@ public class PlayerController : MonoBehaviour {
 
         // Initialise variables
         m_MovementDirection = Vector3.zero;
+        m_iCurrentHealth = m_iMaxHealth;
     }
 
     // Update is called once per frame
@@ -57,9 +70,9 @@ public class PlayerController : MonoBehaviour {
         CalculatePlayerRotation();
         ApplyGravity();
         Jump();
-        //ProcessFloat();
+        ProcessFloat();
         m_MovementDirection.y += m_fVerticalVelocity * Time.deltaTime;
-
+        print(m_fVerticalVelocity);
         // Move the player
         m_CharacterController.Move(m_MovementDirection * m_fMovementSpeed * Time.deltaTime);
     }
@@ -110,6 +123,10 @@ public class PlayerController : MonoBehaviour {
 
     // Updates the player's vertical velocity to consider gravity
     private void ApplyGravity() {
+        // Check if floating
+        if (m_bIsFloating) {
+            m_fGravityMulitplier = m_fFloatGravityReduction;
+        }
         m_fVerticalVelocity += Physics.gravity.y * m_fGravityMulitplier *  Time.deltaTime;
         if (m_CharacterController.isGrounded) {
             m_fGravityMulitplier = 1.0f;
@@ -120,14 +137,17 @@ public class PlayerController : MonoBehaviour {
         m_fVerticalVelocity = Mathf.Clamp(m_fVerticalVelocity, -100.0f, 100.0f);
     }
 
+    // Handles the player floating slowly downwards
     private void ProcessFloat() {
-        if (!m_CharacterController.isGrounded) {
+        if (!m_CharacterController.isGrounded && !m_bCanDoubleJump) {
             if(Input.GetKey(KeyCode.Space) && m_fFloatTimer < m_fFloatTime) {
-                m_fVerticalVelocity = -0.1f;
+                //m_fVerticalVelocity = -m_fFloatFallSpeed;
+                m_bIsFloating = true;
                 m_fFloatTimer += Time.deltaTime;
             }
         } else {
             m_fFloatTimer = 0.0f;
+            m_bIsFloating = false;
         }
     }
 }
