@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour {
     void Start(){
         // Create component references
         m_CharacterController = GetComponent<CharacterController>();
+        m_Animator = GetComponentInChildren<Animator>();
 
         // Initialise variables
         m_MovementDirection = Vector3.zero;
