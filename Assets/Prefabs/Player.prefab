@@ -115,6 +115,10 @@ MonoBehaviour:
   m_fJumpPower: 40
   m_fCoyoteTime: 0.5
   m_fFloatTime: 2
+  m_fFloatGravityReduction: 0.8
+  m_iMaxHealth: 4
+  m_TeleportMarkerPrefab: {fileID: 4014711655795980374, guid: c41636a9b31e7fe41a035772d181afa5,
+    type: 3}
 --- !u!1 &6850383251018904600
 GameObject:
   m_ObjectHideFlags: 0

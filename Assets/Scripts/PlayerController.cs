@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour {
 
     // Component references
     private CharacterController m_CharacterController;
+    private Animator m_Animator;
 
 #region INTERNAL_VARIABLES
     // Movement variables
@@ -31,7 +32,7 @@ public class PlayerController : MonoBehaviour {
     [Tooltip("The time that the player can float for")][SerializeField]
     private float m_fFloatTime = 2.0f;
     private float m_fFloatTimer = 0.0f;
-    [Tooltip("The fraction of that gravity affects the player while they are floating"][SerializeField]
+    [Tooltip("The fraction of that gravity affects the player while they are floating")][SerializeField]
     private float m_fFloatGravityReduction = 0.8f;
     private bool m_bIsFloating = false;
 
@@ -40,6 +41,15 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private int m_iMaxHealth = 4;
     private int m_iCurrentHealth;
+
+    // Ability variables
+    [Header("Ability Variables")]
+    [Tooltip("The game object that will be used as the teleport marker")][SerializeField]
+    private GameObject m_TeleportMarkerPrefab;
+    private Vector3 m_vecTeleportLocation;
+    private bool m_bTeleportMarkerDown = false;
+    private GameObject m_TeleportMarker; // Object to be instantiated and moved accordingly
+    private GameObject m_SwitchTarget;
 #endregion
 
     // Start is called before the first frame update
@@ -50,6 +60,11 @@ public class PlayerController : MonoBehaviour {
         // Initialise variables
         m_MovementDirection = Vector3.zero;
         m_iCurrentHealth = m_iMaxHealth;
+
+        if (m_TeleportMarkerPrefab) {
+            m_TeleportMarker = Instantiate(m_TeleportMarkerPrefab);
+            m_TeleportMarker.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -61,6 +76,7 @@ public class PlayerController : MonoBehaviour {
         // Calculate movement for the frame
         m_MovementDirection = Vector3.zero;
         HandlePlayerMovement();
+        HandlePlayerAbilities();
 
     }
 
@@ -169,6 +185,7 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    // Toggles the internal variables when the player starts/stops floating
     private void ToggleFloatState(bool _bState) {
         if(m_bIsFloating == _bState) {
             return;
@@ -179,5 +196,54 @@ public class PlayerController : MonoBehaviour {
             // Level out the player's upward velocity to begin gliding
             m_fVerticalVelocity = 0.0f;
         }
+    }
+
+    // Deals damage to the player, and checks for death
+    public void DamagePlayer(int _iDamage) {
+        m_iCurrentHealth -= _iDamage;
+        if(m_iCurrentHealth <= 0) {
+            // Death
+            print("Player is dead");
+        }
+    }
+
+    // Handles all of the functions that control player abilities
+    private void HandlePlayerAbilities() {
+        // Handle placing a teleport marker
+        if (Input.GetButtonDown("SquareButton")) {
+            PlaceTeleportMarker();
+        }
+        else if (Input.GetButtonDown("CircleButton")) {
+            TeleportToTeleportMarker();
+        }
+    }
+
+    private void TeleportToLocation(Vector3 _vecTargetLocation) {
+        // Play VFX
+
+        // Update position
+        transform.position = _vecTargetLocation;
+    }
+
+    private void PlaceTeleportMarker() {
+        if (!m_TeleportMarker) {
+            return;
+        }
+
+        m_TeleportMarker.transform.position = transform.position; // Need to use an offset, perhaps with animation
+        // Enable teleport marker
+        if (!m_TeleportMarker.activeSelf) {
+            m_TeleportMarker.SetActive(true); // Replace this with teleport scroll animations, etc
+            m_bTeleportMarkerDown = true;
+        }
+    }
+
+    private void TeleportToTeleportMarker() {
+        if (!m_bTeleportMarkerDown || !m_TeleportMarker) {
+            return; // Error animation / noise
+        }
+        TeleportToLocation(m_TeleportMarker.transform.position);
+        // Disable teleport marker
+        m_TeleportMarker.SetActive(false);
     }
 }
