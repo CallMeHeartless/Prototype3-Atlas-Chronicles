@@ -191,7 +191,7 @@ public class PlayerController : MonoBehaviour {
             return;
         }
         m_bIsFloating = _bState;
-        print("Float state: " + m_bIsFloating);
+
         if (m_bIsFloating) {
             // Level out the player's upward velocity to begin gliding
             m_fVerticalVelocity = 0.0f;
@@ -215,6 +215,13 @@ public class PlayerController : MonoBehaviour {
         }
         else if (Input.GetButtonDown("CircleButton")) {
             TeleportToTeleportMarker();
+        }
+        else if (Input.GetButtonDown("TriangleButton")) {
+            if (m_SwitchTarget) {
+                SwitchWithTarget();
+            } else {
+                PlaceSwitchMarker();
+            }
         }
     }
 
@@ -245,5 +252,26 @@ public class PlayerController : MonoBehaviour {
         TeleportToLocation(m_TeleportMarker.transform.position);
         // Disable teleport marker
         m_TeleportMarker.SetActive(false);
+    }
+
+    private void PlaceSwitchMarker() {
+        // Animation
+
+        // DEBUG
+        m_SwitchTarget = GameObject.Find("SwitchTest");
+    }
+
+    private void SwitchWithTarget() {
+        if (!m_SwitchTarget) {
+            return;
+        }
+
+        // Switch positions
+        Vector3 vecPlayerPosition = transform.position;
+        transform.position = m_SwitchTarget.transform.position;
+        m_SwitchTarget.transform.position = vecPlayerPosition;
+
+        // Remove reference
+        m_SwitchTarget = null;
     }
 }
