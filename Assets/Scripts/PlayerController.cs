@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour {
         CalculatePlayerRotation();
         ApplyGravity();
         Jump();
-        ProcessFloat();
+        //ProcessFloat();
         m_MovementDirection.y += m_fVerticalVelocity * Time.deltaTime;
         print(m_fVerticalVelocity);
         // Move the player
