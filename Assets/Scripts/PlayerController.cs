@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour {
         // Handle jump input
         if (m_CharacterController.isGrounded || m_bCanDoubleJump || m_fCoyoteTimer < m_fCoyoteTime) {
             // Jump code
-            if (Input.GetKeyDown(KeyCode.Space)) { // Change this here
+            if (Input.GetButtonDown("XButton")) { // Change this here
                 m_fVerticalVelocity = m_fJumpPower;
                 m_fGravityMulitplier = 1.0f;
                 // Control use of double jump
@@ -165,10 +165,10 @@ public class PlayerController : MonoBehaviour {
     private void ProcessFloat() {
         if (!m_CharacterController.isGrounded && !m_bCanDoubleJump) {
             // The player can start floating after a double jump
-            if(Input.GetKeyDown(KeyCode.Space) && m_fFloatTimer == 0.0f) { // Change comparison to < m_fFloatTimer for multiple floats per jump
+            if(Input.GetButtonDown("XButton") && m_fFloatTimer == 0.0f) { // Change comparison to < m_fFloatTimer for multiple floats per jump
                 ToggleFloatState(true);
             }
-            else if (Input.GetKeyUp(KeyCode.Space)) {
+            else if (Input.GetButtonUp("XButton")) {
                 ToggleFloatState(false);
             }
         }
