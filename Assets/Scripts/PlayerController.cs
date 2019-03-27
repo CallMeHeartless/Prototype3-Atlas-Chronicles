@@ -28,10 +28,10 @@ public class PlayerController : MonoBehaviour {
     private bool m_bCanDoubleJump = true;
     private float m_fVerticalVelocity = 0.0f;
     private float m_fGravityMulitplier = 1.0f;
-    [SerializeField]
+    [Tooltip("The time that the player can float for")][SerializeField]
     private float m_fFloatTime = 2.0f;
     private float m_fFloatTimer = 0.0f;
-    [SerializeField]
+    [Tooltip("The fraction of that gravity affects the player while they are floating"][SerializeField]
     private float m_fFloatGravityReduction = 0.8f;
     private bool m_bIsFloating = false;
 
