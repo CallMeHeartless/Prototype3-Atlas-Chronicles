@@ -25,8 +25,8 @@ public class wavePointOnCompass : MonoBehaviour
 
 
             Vector3 screenPoint = cam.WorldToViewportPoint(marker.transform.position);
-            bool onScreen = screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
-            Debug.Log(onScreen);
+            //bool onScreen = screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
+            //Debug.Log(onScreen);
 
             if (screenPoint.x < 0)
             {
@@ -46,7 +46,7 @@ public class wavePointOnCompass : MonoBehaviour
                     gameObject.GetComponent<RectTransform>().position = new Vector3(number, 399, 0);
                 }
             }
-            Debug.Log(screenPoint.x );
+            //Debug.Log(screenPoint.x );
         }
     }
 }
