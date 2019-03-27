@@ -27,11 +27,13 @@ public class telescope : MonoBehaviour
                 {
                     camera.GetComponent<Camera>().fieldOfView = newPOV;
                     transform.GetChild(0).gameObject.SetActive(true);
+                    transform.GetChild(1).gameObject.SetActive(false);
                 }
                 else
                 {
                     camera.GetComponent<Camera>().fieldOfView = POVNormal;
                     transform.GetChild(0).gameObject.SetActive(false);
+                    transform.GetChild(1).gameObject.SetActive(true);
                 }
                 looking = !looking;
                 delay = 2;
