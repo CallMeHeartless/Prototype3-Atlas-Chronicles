@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour {
     [Header("Movement Variables")]
     [SerializeField]
     private float m_fMovementSpeed;
+    private float m_fTurnSpeed = 10.0f;
     [SerializeField]
     private float m_fJumpPower;
     [Tooltip("Time where the player may still jump after falling")][SerializeField]
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour {
     [Tooltip("The fraction of that gravity affects the player while they are floating")][SerializeField]
     private float m_fFloatGravityReduction = 0.8f;
     private bool m_bIsFloating = false;
+    private bool m_bIsWading = false;
 
     // Combat variables
     [Header("Combat Variables")]
@@ -90,7 +92,6 @@ public class PlayerController : MonoBehaviour {
         ProcessFloat();
         Jump();
         m_MovementDirection.y += m_fVerticalVelocity * Time.deltaTime;
-        //print(m_fVerticalVelocity);
         // Move the player
         m_CharacterController.Move(m_MovementDirection * m_fMovementSpeed * Time.deltaTime);
     }
@@ -100,6 +101,12 @@ public class PlayerController : MonoBehaviour {
         // Take player input
         m_MovementDirection = (m_CameraReference.transform.right * Input.GetAxis("Horizontal") + m_CameraReference.transform.forward * Input.GetAxis("Vertical")).normalized;
         m_MovementDirection.y = 0.0f;
+        if(m_MovementDirection.sqrMagnitude == 0) {
+            // Idle
+            m_Animator.SetTrigger("Idle");
+        } else {
+            m_Animator.SetTrigger("Run");
+        }
     }
 
     // Rotates the player to look in the direction they are moving
@@ -115,7 +122,6 @@ public class PlayerController : MonoBehaviour {
 
     // Performs a simple jump
     private void Jump() {
-        //print("isGrounded: " + m_CharacterController.isGrounded + " doubleJump: " + m_bCanDoubleJump + " cTimer: " + m_fCoyoteTimer);
         // Handle jump input
         if (m_CharacterController.isGrounded || m_bCanDoubleJump || m_fCoyoteTimer < m_fCoyoteTime) {
             // Jump code
@@ -126,6 +132,8 @@ public class PlayerController : MonoBehaviour {
                 if (!m_CharacterController.isGrounded) {
                     m_bCanDoubleJump = false;
                 }
+                // Animation
+                m_Animator.SetTrigger("JumpUp");
             }
 
         }
