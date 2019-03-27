@@ -52,6 +52,9 @@ public class PlayerController : MonoBehaviour {
     private bool m_bTeleportMarkerDown = false;
     private GameObject m_TeleportMarker; // Object to be instantiated and moved accordingly
     private GameObject m_SwitchTarget;
+    private GameObject m_HeldObject;
+    [SerializeField]
+    private Transform m_HeldObjectLocation;
 #endregion
 
     // Start is called before the first frame update
@@ -282,5 +285,19 @@ public class PlayerController : MonoBehaviour {
 
         // Remove reference
         m_SwitchTarget = null;
+    }
+
+    private void ThrowHeldObject() {
+        if (!m_HeldObject) {
+            return;
+        }
+    }
+
+    private void AimHeldObject() {
+
+    }
+
+    private void GrabObject() {
+
     }
 }

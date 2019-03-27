@@ -6,6 +6,8 @@ TagManager:
   tags:
   - PrimaryPickUp
   - SecondayPickUp
+  - Enemy
+  - HoldableItem
   layers:
   - Default
   - TransparentFX
