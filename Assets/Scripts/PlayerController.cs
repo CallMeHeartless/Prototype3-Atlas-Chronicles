@@ -28,10 +28,10 @@ public class PlayerController : MonoBehaviour {
     private bool m_bCanDoubleJump = true;
     private float m_fVerticalVelocity = 0.0f;
     private float m_fGravityMulitplier = 1.0f;
-    [SerializeField]
+    [Tooltip("The time that the player can float for")][SerializeField]
     private float m_fFloatTime = 2.0f;
     private float m_fFloatTimer = 0.0f;
-    [SerializeField]
+    [Tooltip("The fraction of that gravity affects the player while they are floating"][SerializeField]
     private float m_fFloatGravityReduction = 0.8f;
     private bool m_bIsFloating = false;
 
@@ -69,10 +69,11 @@ public class PlayerController : MonoBehaviour {
         CalculatePlayerMovement();
         CalculatePlayerRotation();
         ApplyGravity();
+
+        ProcessFloat();
         Jump();
-        //ProcessFloat();
         m_MovementDirection.y += m_fVerticalVelocity * Time.deltaTime;
-        print(m_fVerticalVelocity);
+        //print(m_fVerticalVelocity);
         // Move the player
         m_CharacterController.Move(m_MovementDirection * m_fMovementSpeed * Time.deltaTime);
     }
@@ -116,6 +117,9 @@ public class PlayerController : MonoBehaviour {
         if (m_CharacterController.isGrounded) {
             m_bCanDoubleJump = true;
             m_fCoyoteTimer = 0.0f;
+            if (m_bIsFloating) {
+                m_bIsFloating = false;
+            }
         } else {
             m_fCoyoteTimer += Time.deltaTime;
         }
@@ -125,7 +129,7 @@ public class PlayerController : MonoBehaviour {
     private void ApplyGravity() {
         // Check if floating
         if (m_bIsFloating) {
-         //   m_fGravityMulitplier = m_fFloatGravityReduction;
+            m_fGravityMulitplier = m_fFloatGravityReduction;
         }
         if (m_CharacterController.isGrounded) {
             return;
@@ -144,15 +148,36 @@ public class PlayerController : MonoBehaviour {
     // Handles the player floating slowly downwards
     private void ProcessFloat() {
         if (!m_CharacterController.isGrounded && !m_bCanDoubleJump) {
-            if(Input.GetKey(KeyCode.Space) && m_fFloatTimer < m_fFloatTime) {
-                //m_fVerticalVelocity = -m_fFloatFallSpeed;
-                m_bIsFloating = true;
-                m_fFloatTimer += Time.deltaTime;
+            // The player can start floating after a double jump
+            if(Input.GetKeyDown(KeyCode.Space) && m_fFloatTimer == 0.0f) { // Change comparison to < m_fFloatTimer for multiple floats per jump
+                ToggleFloatState(true);
             }
-        } else {
+            else if (Input.GetKeyUp(KeyCode.Space)) {
+                ToggleFloatState(false);
+            }
+        }
+        // Increment float timer while the player is floating
+        if (m_bIsFloating) {
+            m_fFloatTimer += Time.deltaTime;
+            if(m_fFloatTimer > m_fFloatTime) {
+                ToggleFloatState(false);
+            }
+        }
+        // Allow the character to float again only once they have touched the ground
+        if (m_CharacterController.isGrounded) {
             m_fFloatTimer = 0.0f;
-            m_bIsFloating = false;
-            //m_fGravityMulitplier = 1.0f;
+        }
+    }
+
+    private void ToggleFloatState(bool _bState) {
+        if(m_bIsFloating == _bState) {
+            return;
+        }
+        m_bIsFloating = _bState;
+        print("Float state: " + m_bIsFloating);
+        if (m_bIsFloating) {
+            // Level out the player's upward velocity to begin gliding
+            m_fVerticalVelocity = 0.0f;
         }
     }
 }
