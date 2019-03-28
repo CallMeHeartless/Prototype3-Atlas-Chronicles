@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PlayerAnimationController : MonoBehaviour
 {
+    // External References
+    [SerializeField]
+    private GameObject m_SwitchMarkerPrefab;
+    private GameObject m_SwitchMarker;
+
     private GameObject m_AttackCollider;
     private GameObject m_HandCollider;
     private PlayerController m_PlayerController;
@@ -12,13 +17,28 @@ public class PlayerAnimationController : MonoBehaviour
     void Start()
     {
         m_PlayerController = transform.root.GetComponent<PlayerController>();
+        if (m_SwitchMarkerPrefab) {
+            m_SwitchMarker = GameObject.Instantiate(m_SwitchMarkerPrefab);
+            m_SwitchMarker.SetActive(false);
+            m_SwitchMarker.GetComponent<SwitchTagController>().SetPlayerReference(transform.root.GetComponent<PlayerController>());
+        } else {
+            Debug.LogError("ERROR: PlayerAnimationController - Switch Marker Prefab not set. Null reference exception");
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    // Throws the switch tag
+    public void ThrowSwitchTag() {
+        // Remove from any existing objects
+        m_SwitchMarker.GetComponent<SwitchTagController>().DetachFromObject();
+        m_SwitchMarker.transform.position = m_HandCollider.transform.position;
+        m_SwitchMarker.transform.rotation = transform.root.localRotation;
+        m_SwitchMarker.SetActive(true);
+        m_SwitchMarker.GetComponent<SwitchTagController>().SetMoving(true);
     }
 
+    // Removes the switch tag
+    public void RemoveSwitchTag() {
+        m_SwitchMarker.GetComponent<SwitchTagController>().DetachFromObject();
+    }
 
 }
