@@ -113,8 +113,10 @@ public class PlayerController : MonoBehaviour {
         }
         if(m_MovementDirection.sqrMagnitude == 0) {
             // Idle
+            m_Animator.ResetTrigger("Run");
             m_Animator.SetTrigger("Idle");
         } else {
+            m_Animator.ResetTrigger("Idle");
             m_Animator.SetTrigger("Run");
         }
     }
@@ -235,7 +237,12 @@ public class PlayerController : MonoBehaviour {
     private void HandlePlayerAbilities() {
         // Handle placing a teleport marker
         if (Input.GetButtonDown("SquareButton")) {
-            PlaceTeleportMarker();
+            //PlaceTeleportMarker();
+            // Throw a tag if there is no  held object
+            if (!m_HeldObject) {
+                m_Animator.SetTrigger("Tag");
+            }
+
         }
         else if (Input.GetButtonDown("CircleButton")) {
             TeleportToTeleportMarker();
@@ -260,7 +267,7 @@ public class PlayerController : MonoBehaviour {
         if (!m_TeleportMarker) {
             return;
         }
-        m_Animator.SetTrigger("Tag");
+        //m_Animator.SetTrigger("Tag");
 
         m_TeleportMarker.transform.position = transform.position; // Need to use an offset, perhaps with animation
         // Enable teleport marker
