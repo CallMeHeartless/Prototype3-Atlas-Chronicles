@@ -27,24 +27,43 @@ public class wavePointOnCompass : MonoBehaviour
             Vector3 screenPoint = cam.WorldToViewportPoint(marker.transform.position);
             //bool onScreen = screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
             //Debug.Log(onScreen);
+            if (screenPoint.z > 0)
+            {
 
-            if (screenPoint.x < 0)
-            {
-                //set postion to the right
-                gameObject.GetComponent<RectTransform>().position = new Vector3(430, 399, 0);
-            }
-            else
-            {
-                if (screenPoint.x > 1)
+
+                if (screenPoint.x < 0)
                 {
-                    gameObject.GetComponent<RectTransform>().position = new Vector3(252, 399, 0);
-                    //set postion to the left
+                    //set postion to the right
+                    gameObject.GetComponent<RectTransform>().position = new Vector3(940, 984, 0);
                 }
                 else
                 {
-                    float number = 252+(screenPoint.x*178);
-                    gameObject.GetComponent<RectTransform>().position = new Vector3(number, 399, 0);
+                    if (screenPoint.x > 1)
+                    {
+
+                        gameObject.GetComponent<RectTransform>().position = new Vector3(1113, 984, 0);
+                        //set postion to the left
+                    }
+                    else
+                    {
+                        float number = 932 + (screenPoint.x * 178);
+                        gameObject.GetComponent<RectTransform>().position = new Vector3(number, 984, 0);
+                    }
                 }
+            }
+            else
+            {
+                if (screenPoint.x < 0.5)
+                {
+                    //set postion to the right
+
+                    gameObject.GetComponent<RectTransform>().position = new Vector3(1113, 984, 0);
+                }
+                else
+                {
+                    gameObject.GetComponent<RectTransform>().position = new Vector3(940, 984, 0);
+                }
+
             }
             //Debug.Log(screenPoint.x );
         }
