@@ -62,6 +62,9 @@ public class PlayerController : MonoBehaviour {
         // Create component references
         m_CharacterController = GetComponent<CharacterController>();
         m_Animator = GetComponentInChildren<Animator>();
+        if (!m_CameraReference) {
+            m_CameraReference = GameObject.Find("Main Camera").GetComponent<Camera>();
+        }
 
         // Initialise variables
         m_MovementDirection = Vector3.zero;
@@ -91,10 +94,11 @@ public class PlayerController : MonoBehaviour {
         CalculatePlayerMovement();
         CalculatePlayerRotation();
         ApplyGravity();
-
         ProcessFloat();
         Jump();
         m_MovementDirection.y += m_fVerticalVelocity * Time.deltaTime;
+        m_Animator.SetFloat("JumpSpeed", m_MovementDirection.y);
+
         // Move the player
         m_CharacterController.Move(m_MovementDirection * m_fMovementSpeed * Time.deltaTime);
     }
@@ -104,6 +108,9 @@ public class PlayerController : MonoBehaviour {
         // Take player input
         m_MovementDirection = (m_CameraReference.transform.right * Input.GetAxis("Horizontal") + m_CameraReference.transform.forward * Input.GetAxis("Vertical")).normalized;
         m_MovementDirection.y = 0.0f;
+        if (!m_CharacterController.isGrounded) {
+            return;
+        }
         if(m_MovementDirection.sqrMagnitude == 0) {
             // Idle
             m_Animator.SetTrigger("Idle");
@@ -136,7 +143,7 @@ public class PlayerController : MonoBehaviour {
                     m_bCanDoubleJump = false;
                 }
                 // Animation
-                m_Animator.SetTrigger("JumpUp");
+                m_Animator.SetTrigger("Jump");
             }
 
         }
@@ -194,6 +201,7 @@ public class PlayerController : MonoBehaviour {
         // Allow the character to float again only once they have touched the ground
         if (m_CharacterController.isGrounded) {
             m_fFloatTimer = 0.0f;
+            ToggleFloatState(false);
         }
     }
 
@@ -207,6 +215,10 @@ public class PlayerController : MonoBehaviour {
         if (m_bIsFloating) {
             // Level out the player's upward velocity to begin gliding
             m_fVerticalVelocity = 0.0f;
+            m_Animator.SetTrigger("Glide");
+        } else {
+            //m_Animator.ResetTrigger("Glide");
+            m_Animator.SetTrigger("Jump");
         }
     }
 
@@ -248,6 +260,7 @@ public class PlayerController : MonoBehaviour {
         if (!m_TeleportMarker) {
             return;
         }
+        m_Animator.SetTrigger("Tag");
 
         m_TeleportMarker.transform.position = transform.position; // Need to use an offset, perhaps with animation
         // Enable teleport marker
