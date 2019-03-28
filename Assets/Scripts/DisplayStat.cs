@@ -22,7 +22,13 @@ public class DisplayStat : MonoBehaviour
         {
             showStat();
         }
-       
+
+        //show all stats
+        showStats = true;
+        maps.SetActive(true);
+        note.SetActive(true);
+        maps.GetComponent<Text>().text = GameStats.MapsBoard[GameStats.LevelLoctation].ToString();
+        note.GetComponent<Text>().text = GameStats.NoteBoard[GameStats.LevelLoctation].ToString();
     }
   
     void newHealth(int HP)
