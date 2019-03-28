@@ -10,6 +10,7 @@ public class PlayerAnimationController : MonoBehaviour
     private GameObject m_SwitchMarker;
 
     private GameObject m_AttackCollider;
+    [SerializeField]
     private GameObject m_HandCollider;
     private PlayerController m_PlayerController;
 
