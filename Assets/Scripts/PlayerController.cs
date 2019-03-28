@@ -241,10 +241,13 @@ public class PlayerController : MonoBehaviour {
     private void HandlePlayerAbilities() {
         // Handle placing a teleport marker
         if (Input.GetButtonDown("SquareButton")) {
-            //PlaceTeleportMarker();
             // Throw a tag if there is no  held object
-            if (!m_HeldObject) {
-                //
+            if (!m_HeldObject && m_CharacterController.isGrounded) {
+                // Place on ground
+                m_Animator.ResetTrigger("Idle");
+                m_Animator.ResetTrigger("Run");
+                m_Animator.SetTrigger("Pickup");
+                PlaceTeleportMarker(transform.position - new Vector3(0, 0.7f, 0));
             } else {
                 // Tag the held object
             }
@@ -258,7 +261,6 @@ public class PlayerController : MonoBehaviour {
                 SwitchWithTarget();
             } else {
                 m_Animator.SetTrigger("Tag");
-                //PlaceSwitchMarker();
             }
         }
     }
@@ -270,13 +272,13 @@ public class PlayerController : MonoBehaviour {
         transform.position = _vecTargetLocation;
     }
 
-    private void PlaceTeleportMarker() {
+    public void PlaceTeleportMarker(Vector3 _vecPlacementLocation) {
         if (!m_TeleportMarker) {
             return;
         }
         //m_Animator.SetTrigger("Tag");
 
-        m_TeleportMarker.transform.position = transform.position; // Need to use an offset, perhaps with animation
+        m_TeleportMarker.transform.position = _vecPlacementLocation; // Need to use an offset, perhaps with animation
         // Enable teleport marker
         if (!m_TeleportMarker.activeSelf) {
             m_TeleportMarker.SetActive(true); // Replace this with teleport scroll animations, etc
@@ -291,10 +293,6 @@ public class PlayerController : MonoBehaviour {
         TeleportToLocation(m_TeleportMarker.transform.position);
         // Disable teleport marker
         m_TeleportMarker.SetActive(false);
-    }
-
-    private void PlaceSwitchMarker() {
-
     }
 
     private void SwitchWithTarget() {
