@@ -5,7 +5,7 @@ using UnityEngine;
 public class SwitchTagController : MonoBehaviour
 {
     [SerializeField]
-    private float m_fMoveSpeed = 2.0f;
+    private float m_fMoveSpeed = 20.0f;
     private bool m_bIsMoving = false;
     private Transform m_AttachedObject = null;
     [SerializeField]
@@ -18,7 +18,7 @@ public class SwitchTagController : MonoBehaviour
     void Update(){
         // Move the tag forward if it has been thrown
         if (m_bIsMoving) {
-            transform.Translate(transform.forward * m_fMoveSpeed * Time.deltaTime);
+            transform.Translate(Vector3.forward * m_fMoveSpeed * Time.deltaTime);
         }
     }
 
@@ -35,8 +35,9 @@ public class SwitchTagController : MonoBehaviour
             transform.SetParent(m_AttachedObject);
             m_bIsMoving = false;
             m_PlayerReference.SetSwitchTarget(m_AttachedObject.gameObject);
-        } else {
-            // Destroy animation?
+        } else if(!other.CompareTag("Player")){
+            // Destroy animation? DO NOT DESTROY OBJECT
+            DetachFromObject();
         }
     }
 

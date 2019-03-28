@@ -294,10 +294,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void PlaceSwitchMarker() {
-        // Animation
 
-        // DEBUG
-        //m_SwitchTarget = GameObject.Find("SwitchTest");
     }
 
     private void SwitchWithTarget() {
@@ -306,9 +303,9 @@ public class PlayerController : MonoBehaviour {
         }
 
         // Switch positions
-        //Vector3 vecPlayerPosition = transform.position;
+        Vector3 vecPlayerPosition = transform.position;
         transform.position = m_SwitchTarget.transform.position;
-        //m_SwitchTarget.transform.position = vecPlayerPosition;
+        m_PAnimationController.GetSwitchMarker().GetComponent<SwitchTagController>().Switch(vecPlayerPosition);
 
         // Remove reference
         m_SwitchTarget = null;
@@ -331,5 +328,11 @@ public class PlayerController : MonoBehaviour {
 
     private void GrabObject() {
 
+    }
+
+    // Sets the player's vertical velocity 
+    public void SetPlayerVerticalVelocity(float _fVelocity) {
+        m_fVerticalVelocity = _fVelocity;
+        print("Velocity: " + m_fVerticalVelocity);
     }
 }

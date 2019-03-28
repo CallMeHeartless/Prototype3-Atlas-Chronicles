@@ -31,8 +31,15 @@ public class PlayerAnimationController : MonoBehaviour
     public void ThrowSwitchTag() {
         // Remove from any existing objects
         m_SwitchMarker.GetComponent<SwitchTagController>().DetachFromObject();
+        // Update transform
         m_SwitchMarker.transform.position = m_HandCollider.transform.position;
-        m_SwitchMarker.transform.rotation = transform.root.localRotation;
+        m_SwitchMarker.transform.rotation = transform.root.rotation;
+
+        // DEBUG
+        //print("Rotation: " + m_SwitchMarker.transform.rotation.eulerAngles + " Forward: " + m_SwitchMarker.transform.forward);
+        //print("Forward: " + m_SwitchMarker.transform.forward);
+
+        // Make active
         m_SwitchMarker.SetActive(true);
         m_SwitchMarker.GetComponent<SwitchTagController>().SetMoving(true);
     }
@@ -42,4 +49,8 @@ public class PlayerAnimationController : MonoBehaviour
         m_SwitchMarker.GetComponent<SwitchTagController>().DetachFromObject();
     }
 
+
+    public GameObject GetSwitchMarker() {
+        return m_SwitchMarker;
+    }
 }
