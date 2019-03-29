@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour {
     // Component references
     private CharacterController m_CharacterController;
     private Animator m_Animator;
+    private PlayerAnimationController m_PAnimationController;
 
 #region INTERNAL_VARIABLES
     // Movement variables
@@ -48,6 +49,8 @@ public class PlayerController : MonoBehaviour {
     [Header("Ability Variables")]
     [Tooltip("The game object that will be used as the teleport marker")][SerializeField]
     private GameObject m_TeleportMarkerPrefab;
+    [SerializeField]
+    private Vector3 m_vecTeleportMarkerOffset;
     private Vector3 m_vecTeleportLocation;
     private bool m_bTeleportMarkerDown = false;
     private GameObject m_TeleportMarker; // Object to be instantiated and moved accordingly
@@ -62,6 +65,7 @@ public class PlayerController : MonoBehaviour {
         // Create component references
         m_CharacterController = GetComponent<CharacterController>();
         m_Animator = GetComponentInChildren<Animator>();
+        m_PAnimationController = GetComponentInChildren<PlayerAnimationController>();
         if (!m_CameraReference) {
             m_CameraReference = GameObject.Find("Main Camera").GetComponent<Camera>();
         }
@@ -237,10 +241,15 @@ public class PlayerController : MonoBehaviour {
     private void HandlePlayerAbilities() {
         // Handle placing a teleport marker
         if (Input.GetButtonDown("SquareButton")) {
-            //PlaceTeleportMarker();
             // Throw a tag if there is no  held object
-            if (!m_HeldObject) {
-                m_Animator.SetTrigger("Tag");
+            if (!m_HeldObject && m_CharacterController.isGrounded) {
+                // Place on ground
+                m_Animator.ResetTrigger("Idle");
+                m_Animator.ResetTrigger("Run");
+                m_Animator.SetTrigger("Pickup");
+                PlaceTeleportMarker(transform.position - new Vector3(0, 0.7f, 0));
+            } else {
+                // Tag the held object
             }
 
         }
@@ -251,7 +260,7 @@ public class PlayerController : MonoBehaviour {
             if (m_SwitchTarget) {
                 SwitchWithTarget();
             } else {
-                PlaceSwitchMarker();
+                m_Animator.SetTrigger("Tag");
             }
         }
     }
@@ -263,13 +272,13 @@ public class PlayerController : MonoBehaviour {
         transform.position = _vecTargetLocation;
     }
 
-    private void PlaceTeleportMarker() {
+    public void PlaceTeleportMarker(Vector3 _vecPlacementLocation) {
         if (!m_TeleportMarker) {
             return;
         }
         //m_Animator.SetTrigger("Tag");
 
-        m_TeleportMarker.transform.position = transform.position; // Need to use an offset, perhaps with animation
+        m_TeleportMarker.transform.position = _vecPlacementLocation; // Need to use an offset, perhaps with animation
         // Enable teleport marker
         if (!m_TeleportMarker.activeSelf) {
             m_TeleportMarker.SetActive(true); // Replace this with teleport scroll animations, etc
@@ -278,19 +287,12 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void TeleportToTeleportMarker() {
-        if (!m_bTeleportMarkerDown || !m_TeleportMarker) {
+        if (!m_bTeleportMarkerDown || !m_TeleportMarker || m_HeldObject) {
             return; // Error animation / noise
         }
         TeleportToLocation(m_TeleportMarker.transform.position);
         // Disable teleport marker
         m_TeleportMarker.SetActive(false);
-    }
-
-    private void PlaceSwitchMarker() {
-        // Animation
-
-        // DEBUG
-        m_SwitchTarget = GameObject.Find("SwitchTest");
     }
 
     private void SwitchWithTarget() {
@@ -301,10 +303,15 @@ public class PlayerController : MonoBehaviour {
         // Switch positions
         Vector3 vecPlayerPosition = transform.position;
         transform.position = m_SwitchTarget.transform.position;
-        m_SwitchTarget.transform.position = vecPlayerPosition;
+        m_PAnimationController.GetSwitchMarker().GetComponent<SwitchTagController>().Switch(vecPlayerPosition);
 
         // Remove reference
         m_SwitchTarget = null;
+    }
+
+    // Sets the player controller's switch target
+    public void SetSwitchTarget(GameObject _switchTarget) {
+        m_SwitchTarget = _switchTarget;
     }
 
     private void ThrowHeldObject() {
@@ -319,5 +326,11 @@ public class PlayerController : MonoBehaviour {
 
     private void GrabObject() {
 
+    }
+
+    // Sets the player's vertical velocity 
+    public void SetPlayerVerticalVelocity(float _fVelocity) {
+        m_fVerticalVelocity = _fVelocity;
+        print("Velocity: " + m_fVerticalVelocity);
     }
 }
