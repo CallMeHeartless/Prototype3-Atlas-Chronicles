@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3eb6de6d5b6b374469cf7a9a8d34379f
+guid: 41fcc10e97333b14e85392eba5642659
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -91,8 +91,7 @@ ModelImporter:
     400082: Base HumanSpine2
     400084: Base HumanSpine3
     400086: Base HumanSpine4
-    7400000: Aim
-    7400002: throw
+    7400000: TagObject
     9500000: //RootNode
   externalObjects: {}
   materials:
