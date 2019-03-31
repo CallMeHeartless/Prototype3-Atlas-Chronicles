@@ -82,7 +82,7 @@ MonoBehaviour:
     m_MaxSpeed: 300
     m_AccelTime: 0.1
     m_DecelTime: 0.1
-    m_InputAxisName: Mouse X
+    m_InputAxisName: RightX
     m_InputAxisValue: 0
     m_InvertInput: 1
     m_MinValue: -180
@@ -207,7 +207,7 @@ MonoBehaviour:
     m_MaxSpeed: 300
     m_AccelTime: 0.1
     m_DecelTime: 0.1
-    m_InputAxisName: Mouse X
+    m_InputAxisName: RightX
     m_InputAxisValue: 0
     m_InvertInput: 1
     m_MinValue: -180
@@ -560,7 +560,7 @@ MonoBehaviour:
     m_MaxSpeed: 300
     m_AccelTime: 0.1
     m_DecelTime: 0.1
-    m_InputAxisName: Mouse X
+    m_InputAxisName: RightX
     m_InputAxisValue: 0
     m_InvertInput: 1
     m_MinValue: -180
@@ -679,7 +679,7 @@ MonoBehaviour:
     m_MaxSpeed: 2
     m_AccelTime: 0.2
     m_DecelTime: 0.1
-    m_InputAxisName: Mouse Y
+    m_InputAxisName: RightYAxis
     m_InputAxisValue: 0
     m_InvertInput: 0
     m_MinValue: 0
@@ -702,7 +702,7 @@ MonoBehaviour:
     m_MaxSpeed: 300
     m_AccelTime: 0.1
     m_DecelTime: 0.1
-    m_InputAxisName: Mouse X
+    m_InputAxisName: RightXAxis
     m_InputAxisValue: 0
     m_InvertInput: 1
     m_MinValue: -180
@@ -735,6 +735,6 @@ MonoBehaviour:
     m_Radius: 10
   m_LegacyHeadingBias: 3.4028235e+38
   m_Rigs:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 4385144533418833835}
+  - {fileID: 4385144533576949296}
+  - {fileID: 4385144533646366975}

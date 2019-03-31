@@ -10,6 +10,10 @@ public class stoneArc : MonoBehaviour
 
     public LineRenderer lineRend;
     public GameObject stone;
+    [SerializeField]
+    private float m_fMinAngle = 10.0f;
+    [SerializeField]
+    private float m_fMaxAngle = 45.0f;
     private float m_fAngle = 45.0f;
     [SerializeField]
     private float m_fForwardVelocity = 10.0f;
@@ -83,12 +87,12 @@ public class stoneArc : MonoBehaviour
 
     // Determine the arc's form based on where the player is looking
     private void UpdateArcParameters() {
-        // Get a reference to where the camera is looking
+        // Get a reference to where the camera is looking to set the arc rotation
         float fCameraYRotation = m_CameraReference.transform.rotation.eulerAngles.y;
         m_fRotation = fCameraYRotation * Mathf.Deg2Rad;
-        // Rotate the aim
-        //transform.rotation = Quaternion.AngleAxis(fCameraYRotation, Vector3.up);
-            
+
+        // Take input from the y axis to adjust the angle of the arc
+        float fDeltaAngle = Input.GetAxis("RightYAxis");
 
     }
 
