@@ -16,7 +16,13 @@ public class PlayerController : MonoBehaviour {
     private Animator m_Animator;
     private PlayerAnimationController m_PAnimationController;
 
-#region INTERNAL_VARIABLES
+    #region INTERNAL_VARIABLES
+    // Control References
+    private string m_strJumpButton = "AButton";
+    private string m_strSwitchButton = "YButton";
+    private string m_strTeleportMarkerPlaceButton = "XboxXButton";
+    private string m_strTeleportButton = "BButton";
+
     // Movement variables
     [Header("Movement Variables")]
     [SerializeField]
@@ -133,7 +139,7 @@ public class PlayerController : MonoBehaviour {
         }
         Vector3 vecLookDirection = m_MovementDirection;
         vecLookDirection.y = 0.0f; // Remove y component
-        transform.rotation = Quaternion.LookRotation(vecLookDirection);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(vecLookDirection), Time.deltaTime * m_fTurnSpeed);
     }
 
     // Performs a simple jump
@@ -141,7 +147,7 @@ public class PlayerController : MonoBehaviour {
         // Handle jump input
         if (m_CharacterController.isGrounded || m_bCanDoubleJump || m_fCoyoteTimer < m_fCoyoteTime) {
             // Jump code
-            if (Input.GetButtonDown("XButton")) { // Change this here
+            if (Input.GetButtonDown(m_strJumpButton)) { // Change this here
                 m_fVerticalVelocity = m_fJumpPower;
                 m_fGravityMulitplier = 1.0f;
                 // Control use of double jump
@@ -190,10 +196,10 @@ public class PlayerController : MonoBehaviour {
     private void ProcessFloat() {
         if (!m_CharacterController.isGrounded && !m_bCanDoubleJump) {
             // The player can start floating after a double jump
-            if(Input.GetButtonDown("XButton") && m_fFloatTimer == 0.0f) { // Change comparison to < m_fFloatTimer for multiple floats per jump
+            if(Input.GetButtonDown(m_strJumpButton) && m_fFloatTimer == 0.0f) { // Change comparison to < m_fFloatTimer for multiple floats per jump
                 ToggleFloatState(true);
             }
-            else if (Input.GetButtonUp("XButton")) {
+            else if (Input.GetButtonUp(m_strJumpButton)) {
                 ToggleFloatState(false);
             }
         }
@@ -240,7 +246,7 @@ public class PlayerController : MonoBehaviour {
     // Handles all of the functions that control player abilities
     private void HandlePlayerAbilities() {
         // Handle placing a teleport marker
-        if (Input.GetButtonDown("SquareButton")) {
+        if (Input.GetButtonDown(m_strTeleportMarkerPlaceButton)) {
             // Throw a tag if there is no  held object
             if (!m_HeldObject && m_CharacterController.isGrounded) {
                 // Place on ground
@@ -249,14 +255,16 @@ public class PlayerController : MonoBehaviour {
                 m_Animator.SetTrigger("Pickup");
                 PlaceTeleportMarker(transform.position - new Vector3(0, 0.7f, 0));
             } else {
-                // Tag the held object
+                TagHeldObject();
             }
 
         }
-        else if (Input.GetButtonDown("CircleButton")) {
+        // Teleporting to the marker
+        else if (Input.GetButtonDown(m_strTeleportButton)) {
             TeleportToTeleportMarker();
         }
-        else if (Input.GetButtonDown("TriangleButton")) {
+        // Throw switch tag / switch teleport
+        else if (Input.GetButtonDown(m_strSwitchButton)) {
             if (m_SwitchTarget) {
                 SwitchWithTarget();
             } else {
@@ -270,8 +278,13 @@ public class PlayerController : MonoBehaviour {
 
         // Update position
         transform.position = _vecTargetLocation;
+
+        // If marker was placed on thrown object, remove it
+        m_TeleportMarker.transform.SetParent(null);
+        m_TeleportMarker.SetActive(false);
     }
 
+    // Place the teleport marker on the ground
     public void PlaceTeleportMarker(Vector3 _vecPlacementLocation) {
         if (!m_TeleportMarker) {
             return;
@@ -286,6 +299,15 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    // Parent the teleport marker to the held object
+    private void TagHeldObject() {
+        if (!m_HeldObject) {
+            return;
+        }
+        m_TeleportMarker.transform.SetParent(m_HeldObject.transform);
+        m_TeleportMarker.SetActive(true);
+    }
+
     private void TeleportToTeleportMarker() {
         if (!m_bTeleportMarkerDown || !m_TeleportMarker || m_HeldObject) {
             return; // Error animation / noise
@@ -294,7 +316,8 @@ public class PlayerController : MonoBehaviour {
         // Disable teleport marker
         m_TeleportMarker.SetActive(false);
     }
-
+    
+    // Trade places with the switch target, then clear the target state
     private void SwitchWithTarget() {
         if (!m_SwitchTarget) {
             return;
