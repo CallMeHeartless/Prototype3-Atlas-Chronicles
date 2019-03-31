@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 85355236720757536}
   - component: {fileID: 85355236720757537}
   m_Layer: 0
-  m_Name: rockThorwerLine
+  m_Name: ProjectileArc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -145,3 +145,5 @@ MonoBehaviour:
   velcoity: 10
   size: 20
   increaser: 20
+  maxVel: 0
+  rotation: 0
