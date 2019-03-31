@@ -1,82 +1,42 @@
 fileFormatVersion: 2
-guid: 097f7e5b4d5ca5046bcbb993372f96a3
+guid: 6639c3a8a0b2a3240b7676a1dd9e2f8b
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Mesh_Block
-    100002: Mesh_Bridge
-    100004: Mesh_Cliff
-    100006: Mesh_MiddleFloor
-    100008: Mesh_Platform
-    100010: Mesh_Ramp
-    100012: Mesh_Rocks
-    100014: Mesh_TempleBase
-    100016: Mesh_TempleBaseFloor
-    100018: Mesh_TempleIsland
-    100020: Mesh_TopFloor
-    100022: Mesh_Tree
-    100024: Mesh_WoodenPlatformers
-    100026: //RootNode
-    100028: TempleIsland1
-    400000: Mesh_Block
-    400002: Mesh_Bridge
-    400004: Mesh_Cliff
-    400006: Mesh_MiddleFloor
-    400008: Mesh_Platform
-    400010: Mesh_Ramp
-    400012: Mesh_Rocks
-    400014: Mesh_TempleBase
-    400016: Mesh_TempleBaseFloor
-    400018: Mesh_TempleIsland
-    400020: Mesh_TopFloor
-    400022: Mesh_Tree
-    400024: Mesh_WoodenPlatformers
-    400026: //RootNode
-    400028: TempleIsland1
-    2100000: TempleIsland_Default_Prototype1
-    2100002: lambert1
-    2300000: Mesh_Block
-    2300002: Mesh_Bridge
-    2300004: Mesh_Cliff
-    2300006: Mesh_MiddleFloor
-    2300008: Mesh_Platform
-    2300010: Mesh_Ramp
-    2300012: Mesh_Rocks
-    2300014: Mesh_TempleBase
-    2300016: Mesh_TempleBaseFloor
-    2300018: Mesh_TempleIsland
-    2300020: Mesh_TopFloor
-    2300022: Mesh_Tree
-    2300024: Mesh_WoodenPlatformers
-    2300026: TempleIsland1
-    3300000: Mesh_Block
-    3300002: Mesh_Bridge
-    3300004: Mesh_Cliff
-    3300006: Mesh_MiddleFloor
-    3300008: Mesh_Platform
-    3300010: Mesh_Ramp
-    3300012: Mesh_Rocks
-    3300014: Mesh_TempleBase
-    3300016: Mesh_TempleBaseFloor
-    3300018: Mesh_TempleIsland
-    3300020: Mesh_TopFloor
-    3300022: Mesh_Tree
-    3300024: Mesh_WoodenPlatformers
-    3300026: TempleIsland1
-    4300000: TempleIsland1
-    4300002: Mesh_TempleBase
-    4300004: Mesh_Platform
-    4300006: Mesh_Block
-    4300008: Mesh_MiddleFloor
-    4300010: Mesh_Tree
-    4300012: Mesh_TopFloor
-    4300014: Mesh_Bridge
-    4300016: Mesh_Ramp
-    4300018: Mesh_Cliff
-    4300020: Mesh_Rocks
-    4300022: Mesh_WoodenPlatformers
-    4300024: Mesh_TempleBaseFloor
-    4300026: Mesh_TempleIsland
+    100000: //RootNode
+    100002: Base HumanPelvis
+    100004: Base HumanRCollarbone
+    100006: Base HumanRDigit11
+    100008: Base HumanRDigit12
+    100010: Base HumanRDigit13
+    100012: Base HumanRDigit21
+    100014: Base HumanRDigit22
+    100016: Base HumanRForearm
+    100018: Base HumanRibcage
+    100020: Base HumanRPalm
+    100022: Base HumanRUpperarm
+    100024: Base HumanSpine1
+    100026: Base HumanSpine2
+    100028: Base HumanSpine3
+    100030: Base HumanSpine4
+    400000: //RootNode
+    400002: Base HumanPelvis
+    400004: Base HumanRCollarbone
+    400006: Base HumanRDigit11
+    400008: Base HumanRDigit12
+    400010: Base HumanRDigit13
+    400012: Base HumanRDigit21
+    400014: Base HumanRDigit22
+    400016: Base HumanRForearm
+    400018: Base HumanRibcage
+    400020: Base HumanRPalm
+    400022: Base HumanRUpperarm
+    400024: Base HumanSpine1
+    400026: Base HumanSpine2
+    400028: Base HumanSpine3
+    400030: Base HumanSpine4
+    7400000: ClosedHand
+    9500000: //RootNode
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -129,8 +89,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
+    previousCalculatedGlobalScale: 0.0254
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -157,7 +117,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
