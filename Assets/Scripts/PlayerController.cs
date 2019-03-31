@@ -16,7 +16,13 @@ public class PlayerController : MonoBehaviour {
     private Animator m_Animator;
     private PlayerAnimationController m_PAnimationController;
 
-#region INTERNAL_VARIABLES
+    #region INTERNAL_VARIABLES
+    // Control References
+    private string m_strJumpButton = "AButton";
+    private string m_strSwitchButton = "YButton";
+    private string m_strTeleportMarkerPlaceButton = "XboxXButton";
+    private string m_strTeleportButton = "BButton";
+
     // Movement variables
     [Header("Movement Variables")]
     [SerializeField]
