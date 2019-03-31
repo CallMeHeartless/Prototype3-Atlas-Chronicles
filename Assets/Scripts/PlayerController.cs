@@ -255,13 +255,15 @@ public class PlayerController : MonoBehaviour {
                 m_Animator.SetTrigger("Pickup");
                 PlaceTeleportMarker(transform.position - new Vector3(0, 0.7f, 0));
             } else {
-                // Tag the held object
+                TagHeldObject();
             }
 
         }
+        // Teleporting to the marker
         else if (Input.GetButtonDown(m_strTeleportButton)) {
             TeleportToTeleportMarker();
         }
+        // Throw switch tag / switch teleport
         else if (Input.GetButtonDown(m_strSwitchButton)) {
             if (m_SwitchTarget) {
                 SwitchWithTarget();
@@ -276,8 +278,13 @@ public class PlayerController : MonoBehaviour {
 
         // Update position
         transform.position = _vecTargetLocation;
+
+        // If marker was placed on thrown object, remove it
+        m_TeleportMarker.transform.SetParent(null);
+        m_TeleportMarker.SetActive(false);
     }
 
+    // Place the teleport marker on the ground
     public void PlaceTeleportMarker(Vector3 _vecPlacementLocation) {
         if (!m_TeleportMarker) {
             return;
@@ -292,6 +299,15 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    // Parent the teleport marker to the held object
+    private void TagHeldObject() {
+        if (!m_HeldObject) {
+            return;
+        }
+        m_TeleportMarker.transform.SetParent(m_HeldObject.transform);
+        m_TeleportMarker.SetActive(true);
+    }
+
     private void TeleportToTeleportMarker() {
         if (!m_bTeleportMarkerDown || !m_TeleportMarker || m_HeldObject) {
             return; // Error animation / noise
@@ -300,7 +316,8 @@ public class PlayerController : MonoBehaviour {
         // Disable teleport marker
         m_TeleportMarker.SetActive(false);
     }
-
+    
+    // Trade places with the switch target, then clear the target state
     private void SwitchWithTarget() {
         if (!m_SwitchTarget) {
             return;
