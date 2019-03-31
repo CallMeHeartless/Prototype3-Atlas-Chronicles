@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 [RequireComponent(typeof(LineRenderer))]
 public class stoneArc : MonoBehaviour
 {
     [SerializeField]
     private GameObject m_CameraReference;
+    [SerializeField]
+    private CinemachineFreeLook m_FreeLookReference;
 
     public LineRenderer lineRend;
     public GameObject stone;
@@ -14,6 +17,7 @@ public class stoneArc : MonoBehaviour
     private float m_fMinAngle = 10.0f;
     [SerializeField]
     private float m_fMaxAngle = 45.0f;
+    [SerializeField]
     private float m_fAngle = 45.0f;
     [SerializeField]
     private float m_fForwardVelocity = 10.0f;
@@ -27,6 +31,7 @@ public class stoneArc : MonoBehaviour
     {
         //lineRend.GetComponent<LineRenderer>();
         m_CameraReference = GameObject.Find("Main Camera");
+        m_FreeLookReference = GameObject.Find("Freelook Camera").GetComponent<CinemachineFreeLook>();
 
     }
 
@@ -82,7 +87,7 @@ public class stoneArc : MonoBehaviour
         }
         
 
-        return currentPoint;
+        return currentPoint + transform.position;
     }
 
     // Determine the arc's form based on where the player is looking
@@ -91,9 +96,9 @@ public class stoneArc : MonoBehaviour
         float fCameraYRotation = m_CameraReference.transform.rotation.eulerAngles.y;
         m_fRotation = fCameraYRotation * Mathf.Deg2Rad;
 
-        // Take input from the y axis to adjust the angle of the arc
-        float fDeltaAngle = Input.GetAxis("RightYAxis");
-
+        float fFreeLookY = m_FreeLookReference.m_YAxis.Value;
+        m_fAngle = Mathf.Lerp(m_fMinAngle, m_fMaxAngle, 1.0f - fFreeLookY);
+        //print(m_fAngle);
     }
 
 }
