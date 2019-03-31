@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 097f7e5b4d5ca5046bcbb993372f96a3
+guid: a57d263c35afba94db35ec2f208279c4
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -16,8 +16,11 @@ ModelImporter:
     100020: Mesh_TopFloor
     100022: Mesh_Tree
     100024: Mesh_WoodenPlatformers
-    100026: //RootNode
-    100028: TempleIsland1
+    100026: New_Game_Object
+    100028: New_Game_Object__3_
+    100030: New_Game_Object__4_
+    100032: New_Game_Object__5_
+    100034: //RootNode
     400000: Mesh_Block
     400002: Mesh_Bridge
     400004: Mesh_Cliff
@@ -31,9 +34,12 @@ ModelImporter:
     400020: Mesh_TopFloor
     400022: Mesh_Tree
     400024: Mesh_WoodenPlatformers
-    400026: //RootNode
-    400028: TempleIsland1
-    2100000: TempleIsland_Default_Prototype1
+    400026: New_Game_Object
+    400028: New_Game_Object__3_
+    400030: New_Game_Object__4_
+    400032: New_Game_Object__5_
+    400034: //RootNode
+    2100000: Default_Prototype
     2100002: lambert1
     2300000: Mesh_Block
     2300002: Mesh_Bridge
@@ -48,7 +54,10 @@ ModelImporter:
     2300020: Mesh_TopFloor
     2300022: Mesh_Tree
     2300024: Mesh_WoodenPlatformers
-    2300026: TempleIsland1
+    2300026: New_Game_Object
+    2300028: New_Game_Object__3_
+    2300030: New_Game_Object__4_
+    2300032: New_Game_Object__5_
     3300000: Mesh_Block
     3300002: Mesh_Bridge
     3300004: Mesh_Cliff
@@ -62,21 +71,27 @@ ModelImporter:
     3300020: Mesh_TopFloor
     3300022: Mesh_Tree
     3300024: Mesh_WoodenPlatformers
-    3300026: TempleIsland1
-    4300000: TempleIsland1
-    4300002: Mesh_TempleBase
-    4300004: Mesh_Platform
-    4300006: Mesh_Block
-    4300008: Mesh_MiddleFloor
-    4300010: Mesh_Tree
-    4300012: Mesh_TopFloor
-    4300014: Mesh_Bridge
-    4300016: Mesh_Ramp
-    4300018: Mesh_Cliff
+    3300026: New_Game_Object
+    3300028: New_Game_Object__3_
+    3300030: New_Game_Object__4_
+    3300032: New_Game_Object__5_
+    4300000: New_Game_Object
+    4300002: New_Game_Object__3_
+    4300004: New_Game_Object__4_
+    4300006: New_Game_Object__5_
+    4300008: Mesh_Block
+    4300010: Mesh_Bridge
+    4300012: Mesh_Cliff
+    4300014: Mesh_MiddleFloor
+    4300016: Mesh_Platform
+    4300018: Mesh_Ramp
     4300020: Mesh_Rocks
-    4300022: Mesh_WoodenPlatformers
+    4300022: Mesh_TempleBase
     4300024: Mesh_TempleBaseFloor
     4300026: Mesh_TempleIsland
+    4300028: Mesh_TopFloor
+    4300030: Mesh_Tree
+    4300032: Mesh_WoodenPlatformers
   externalObjects: {}
   materials:
     importMaterials: 1
