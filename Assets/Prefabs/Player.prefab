@@ -148,7 +148,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6850383250669970804}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 1.4
@@ -301,6 +301,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ProjectileArc
       objectReference: {fileID: 0}
+    - target: {fileID: 85355236720757542, guid: 2537303a9581f70409c2717f3ae5a193,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 85355236720757539, guid: 2537303a9581f70409c2717f3ae5a193,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -355,6 +360,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 85355236720757537, guid: 2537303a9581f70409c2717f3ae5a193,
+        type: 3}
+      propertyPath: maxVel
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2537303a9581f70409c2717f3ae5a193, type: 3}
