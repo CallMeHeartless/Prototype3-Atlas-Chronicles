@@ -139,7 +139,8 @@ public class PlayerController : MonoBehaviour {
         }
         Vector3 vecLookDirection = m_MovementDirection;
         vecLookDirection.y = 0.0f; // Remove y component
-        transform.rotation = Quaternion.LookRotation(vecLookDirection);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(vecLookDirection), Time.deltaTime * m_fTurnSpeed);
+        //transform.rotation = Quaternion.LookRotation(vecLookDirection);
     }
 
     // Performs a simple jump
