@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour {
 
     #region INTERNAL_VARIABLES
     // Control References
-    private string m_strJumpButton = "AButton";
+    private string m_strJumpButton = "Jump";
     private string m_strSwitchButton = "YButton";
     private string m_strTeleportMarkerPlaceButton = "XboxXButton";
     private string m_strTeleportButton = "BButton";
