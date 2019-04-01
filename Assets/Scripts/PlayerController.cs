@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour {
     private Camera m_CameraReference;
     [SerializeField]
     private GameObject m_ProjectileArc;
-
+    
     // Component references
     private CharacterController m_CharacterController;
     private Animator m_Animator;
@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour {
     private string m_strTeleportMarkerPlaceButton = "XboxXButton";
     private string m_strTeleportButton = "BButton";
     private string m_strAimHeldObjectButton = "XBoxR2";
+    private string m_strAimButton = "XBoxL2";
 
     // Movement variables
     [Header("Movement Variables")]
@@ -274,6 +275,8 @@ public class PlayerController : MonoBehaviour {
                 m_Animator.SetTrigger("Tag");
             }
         }
+
+        AimHeldObject();
     }
 
     private void TeleportToLocation(Vector3 _vecTargetLocation) {
@@ -285,6 +288,7 @@ public class PlayerController : MonoBehaviour {
         // If marker was placed on thrown object, remove it
         m_TeleportMarker.transform.SetParent(null);
         m_TeleportMarker.SetActive(false);
+        m_bTeleportMarkerDown = false;
     }
 
     // Place the teleport marker on the ground
@@ -346,8 +350,18 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    // Show the projectile arc while the player is holding down the aim button || CHANGE CAMERA 
     private void AimHeldObject() {
+        if (!m_ProjectileArc) {
+            return;
+        }
 
+        if (Input.GetAxis(m_strAimButton) <0.0f && !m_ProjectileArc.activeSelf){
+            m_ProjectileArc.SetActive(true);
+        }
+        else if(m_ProjectileArc.activeSelf){
+            m_ProjectileArc.SetActive(false);
+        }
     }
 
     private void GrabObject() {
@@ -357,7 +371,7 @@ public class PlayerController : MonoBehaviour {
     // Sets the player's vertical velocity 
     public void SetPlayerVerticalVelocity(float _fVelocity) {
         m_fVerticalVelocity = _fVelocity;
-        m_CharacterController.Move(Vector3.up * 5 * Time.deltaTime);
+        m_CharacterController.Move(Vector3.up * m_fVerticalVelocity * Time.deltaTime);
         //m_Animator.SetTrigger("Jump");
         m_Animator.ResetTrigger("Idle");
         m_Animator.ResetTrigger("Run");
