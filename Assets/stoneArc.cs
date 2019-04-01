@@ -6,6 +6,7 @@ using Cinemachine;
 [RequireComponent(typeof(LineRenderer))]
 public class stoneArc : MonoBehaviour
 {
+    // External References
     [SerializeField]
     private GameObject m_CameraReference;
     [SerializeField]
