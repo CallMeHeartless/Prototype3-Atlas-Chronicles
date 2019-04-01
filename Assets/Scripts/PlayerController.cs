@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour {
     private Vector3 m_MovementDirection;
     private bool m_bCanDoubleJump = true;
     private float m_fVerticalVelocity = 0.0f;
+    private float m_fExternal = 0.0f;
     private float m_fGravityMulitplier = 1.0f;
     [Tooltip("The time that the player can float for")][SerializeField]
     private float m_fFloatTime = 2.0f;
@@ -111,10 +112,19 @@ public class PlayerController : MonoBehaviour {
         ProcessFloat();
         Jump();
         m_MovementDirection.y += m_fVerticalVelocity * Time.deltaTime;
+        m_MovementDirection.y += m_fExternal * Time.deltaTime;
         m_Animator.SetFloat("JumpSpeed", m_MovementDirection.y);
 
         // Move the player
         m_CharacterController.Move(m_MovementDirection * m_fMovementSpeed * Time.deltaTime);
+
+        // Reset external vertical force
+        if (m_fExternal > 0.0f) {
+            m_fExternal -= 100.0f * Time.deltaTime;
+        } else {
+            m_fExternal = 0.0f;
+        }
+        //m_fExternal = 0.0f;
     }
 
     // Calculate movement
@@ -186,6 +196,7 @@ public class PlayerController : MonoBehaviour {
             return;
         }
 
+        // Accelerate the player
         m_fVerticalVelocity += Physics.gravity.y * m_fGravityMulitplier *  Time.deltaTime;
         if (m_CharacterController.isGrounded) {
             m_fGravityMulitplier = 1.0f;
@@ -344,10 +355,12 @@ public class PlayerController : MonoBehaviour {
         m_SwitchTarget = _switchTarget;
     }
 
-    private void ThrowHeldObject() {
+    public void ThrowHeldObject(Vector3 _vecVelocity) {
         if (!m_HeldObject) {
             return;
         }
+        m_HeldObject.transform.SetParent(null);
+        Rigidbody heldObjectRb = m_HeldObject.GetComponent<Rigidbody>();
     }
 
     // Show the projectile arc while the player is holding down the aim button || CHANGE CAMERA 
@@ -370,10 +383,12 @@ public class PlayerController : MonoBehaviour {
 
     // Sets the player's vertical velocity 
     public void SetPlayerVerticalVelocity(float _fVelocity) {
-        m_fVerticalVelocity = _fVelocity;
-        m_CharacterController.Move(Vector3.up * m_fVerticalVelocity * Time.deltaTime);
-        //m_Animator.SetTrigger("Jump");
+        //m_fVerticalVelocity = _fVelocity;
+        m_fExternal = _fVelocity;
+        m_CharacterController.Move(Vector3.up * 3.0f * Time.deltaTime);
+        m_Animator.SetTrigger("Jump");
         m_Animator.ResetTrigger("Idle");
         m_Animator.ResetTrigger("Run");
+        print("SetPlayerVerticalVelocity");
     }
 }
