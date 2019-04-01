@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour {
     [Header("External References")]
     [SerializeField]
     private Camera m_CameraReference;
+    [SerializeField]
+    private GameObject m_ProjectileArc;
 
     // Component references
     private CharacterController m_CharacterController;
@@ -22,6 +24,7 @@ public class PlayerController : MonoBehaviour {
     private string m_strSwitchButton = "YButton";
     private string m_strTeleportMarkerPlaceButton = "XboxXButton";
     private string m_strTeleportButton = "BButton";
+    private string m_strAimHeldObjectButton = "XBoxR2";
 
     // Movement variables
     [Header("Movement Variables")]
@@ -186,7 +189,7 @@ public class PlayerController : MonoBehaviour {
         if (m_CharacterController.isGrounded) {
             m_fGravityMulitplier = 1.0f;
         } else {
-            m_fGravityMulitplier *= 1.1f;
+            m_fGravityMulitplier *= 1.2f;
             m_fGravityMulitplier = Mathf.Clamp(m_fGravityMulitplier, 1.0f, 20.0f);
         }
         m_fVerticalVelocity = Mathf.Clamp(m_fVerticalVelocity, -100.0f, 100.0f);
@@ -354,6 +357,9 @@ public class PlayerController : MonoBehaviour {
     // Sets the player's vertical velocity 
     public void SetPlayerVerticalVelocity(float _fVelocity) {
         m_fVerticalVelocity = _fVelocity;
-        print("Velocity: " + m_fVerticalVelocity);
+        m_CharacterController.Move(Vector3.up * 5 * Time.deltaTime);
+        //m_Animator.SetTrigger("Jump");
+        m_Animator.ResetTrigger("Idle");
+        m_Animator.ResetTrigger("Run");
     }
 }

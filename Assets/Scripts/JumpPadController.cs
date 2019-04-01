@@ -10,7 +10,6 @@ public class JumpPadController : MonoBehaviour {
 
         if (other.CompareTag("Player")) {
             other.GetComponent<PlayerController>().SetPlayerVerticalVelocity(m_fJumpForce);
-            print("jump");
         }
     }
 
