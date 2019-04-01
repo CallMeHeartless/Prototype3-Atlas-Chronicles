@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour {
     private string m_strTeleportButton = "BButton";
     private string m_strAimHeldObjectButton = "XBoxR2";
     private string m_strAimButton = "XBoxL2";
+    private string m_strPickupItemButton = "L1";
 
     // Movement variables
     [Header("Movement Variables")]
@@ -67,6 +68,7 @@ public class PlayerController : MonoBehaviour {
     private GameObject m_TeleportMarker; // Object to be instantiated and moved accordingly
     private GameObject m_SwitchTarget;
     private GameObject m_HeldObject;
+    private bool m_bIsAiming = false;
     [SerializeField]
     private Transform m_HeldObjectLocation;
 #endregion
@@ -361,6 +363,13 @@ public class PlayerController : MonoBehaviour {
         }
         m_HeldObject.transform.SetParent(null);
         Rigidbody heldObjectRb = m_HeldObject.GetComponent<Rigidbody>();
+        // Get velocity
+        LineRenderer lineRenderer = m_ProjectileArc.GetComponent<LineRenderer>();
+        Vector3 vecVelocity = lineRenderer.GetPosition(1) - lineRenderer.GetPosition(0);
+        heldObjectRb.velocity = vecVelocity;
+        m_HeldObject = null;
+        m_bIsAiming = false;
+        m_ProjectileArc.SetActive(false); // Consider removing depending on how input will be handled
     }
 
     // Show the projectile arc while the player is holding down the aim button || CHANGE CAMERA 
@@ -371,13 +380,27 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetAxis(m_strAimButton) <0.0f && !m_ProjectileArc.activeSelf){
             m_ProjectileArc.SetActive(true);
+            m_bIsAiming = true;
         }
         else if(m_ProjectileArc.activeSelf){
-            m_ProjectileArc.SetActive(false);
+           // m_ProjectileArc.SetActive(false);
         }
     }
 
     private void GrabObject() {
+        if (Input.GetButtonDown(m_strPickupItemButton)) {
+            // Pick up the item
+            if (!m_HeldObject) {
+                GameObject testItem = GameObject.Find("HoldableItemTest");
+                m_HeldObject = testItem;
+                testItem.transform.SetParent(m_HeldObjectLocation);
+            } else {
+                // Drop item
+                m_HeldObject.transform.SetParent(null);
+                m_HeldObject = null;
+            }
+        }
+
 
     }
 

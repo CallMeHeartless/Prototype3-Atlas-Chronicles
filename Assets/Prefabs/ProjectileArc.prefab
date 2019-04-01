@@ -49,7 +49,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 7dd74224518935c45b361f55a9555603, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -139,11 +139,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 194ea198dc217194f821466d0ac56e61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_CameraReference: {fileID: 0}
+  m_FreeLookReference: {fileID: 0}
   lineRend: {fileID: 85355236720757536}
   stone: {fileID: 8848854053088411166, guid: 8589ff7cd13e15d49b9981d509219f26, type: 3}
-  angle: 20
-  velcoity: 10
+  m_fMinAngle: 10
+  m_fMaxAngle: 45
+  m_fAngle: 45
+  m_fForwardVelocity: 10
   size: 20
   increaser: 20
   maxVel: 0
-  rotation: 0
