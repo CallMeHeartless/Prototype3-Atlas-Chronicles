@@ -100,4 +100,8 @@ public class stoneArc : MonoBehaviour
         //print(m_fAngle);
     }
 
+    // Gets the rotation
+    public float GetArcRotation() {
+        return m_fRotation;
+    }
 }
