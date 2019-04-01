@@ -35,8 +35,13 @@ AvatarMask:
     m_Weight: 0
   - m_Path: Base HumanPelvis/Base HumanScroll00/Base HumanScroll01/Base HumanScroll02
     m_Weight: 0
-  - m_Path: Base HumanPelvis/Base HumanScroll00/Base HumanScroll01/Base HumanScroll02/Base
-      HumanScroll03
+  - m_Path: Base HumanPelvis/Base HumanScroll00/Base HumanScroll01/Base HumanScroll03
+    m_Weight: 0
+  - m_Path: Base HumanPelvis/Base HumanScroll00/Base HumanScroll01/Base HumanScroll03/Base
+      HumanScroll03 1
+    m_Weight: 0
+  - m_Path: Base HumanPelvis/Base HumanScroll00/Base HumanScroll01/Base HumanScroll03/Base
+      HumanScroll05
     m_Weight: 0
   - m_Path: Base HumanPelvis/Base HumanSpine1
     m_Weight: 1
@@ -49,6 +54,9 @@ AvatarMask:
     m_Weight: 1
   - m_Path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
       HumanSpine4/Base HumanRibcage
+    m_Weight: 1
+  - m_Path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+      HumanSpine4/Base HumanRibcage/Base HumanL_ShoulderPad
     m_Weight: 1
   - m_Path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
       HumanSpine4/Base HumanRibcage/Base HumanLArmCollarbone
@@ -93,6 +101,9 @@ AvatarMask:
     m_Weight: 1
   - m_Path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
       HumanSpine4/Base HumanRibcage/Base HumanNeck1/Base HumanNeck2/Base HumanHead
+    m_Weight: 1
+  - m_Path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
+      HumanSpine4/Base HumanRibcage/Base HumanR_ShoulderPad
     m_Weight: 1
   - m_Path: Base HumanPelvis/Base HumanSpine1/Base HumanSpine2/Base HumanSpine3/Base
       HumanSpine4/Base HumanRibcage/Base HumanRCollarbone
