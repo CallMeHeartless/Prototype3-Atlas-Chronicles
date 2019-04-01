@@ -9,13 +9,15 @@ public class respawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
+        reset = GameObject.FindGameObjectWithTag("spawns");
+        player = GameObject.FindGameObjectWithTag("Player");   
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.y <= -50)
+        if (transform.position.y <= -30)
         {
             Debug.Log("fun");
 
