@@ -71,6 +71,7 @@ public class PlayerController : MonoBehaviour {
     private bool m_bIsAiming = false;
     [SerializeField]
     private Transform m_HeldObjectLocation;
+    private float m_fPickupRadius = 0.95f;
 #endregion
 
     // Start is called before the first frame update
@@ -418,21 +419,26 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    // Pickup the nearest item or drop the held item
     private void GrabObject() {
             // Pick up the item
-            if (!m_HeldObject) {
-                GameObject testItem = GameObject.Find("HoldableItemTest");  // Test object
-                m_HeldObject = testItem;
-                m_HeldObject.transform.position = m_HeldObjectLocation.transform.position;
-                m_HeldObject.transform.SetParent(m_HeldObjectLocation);
-                // Disable rigibody
-                m_HeldObject.GetComponent<Rigidbody>().isKinematic = true;
-            } else {
-                // Drop item
-                m_HeldObject.transform.SetParent(null);
-                m_HeldObject.GetComponent<Rigidbody>().isKinematic = false;
-                m_HeldObject = null;
+        if (!m_HeldObject) {
+            GameObject nearestItem = GetClosestHoldableItem();
+            m_Animator.SetTrigger("Pickup");
+            if (!nearestItem) {
+                return;
             }
+            m_HeldObject = nearestItem;
+            m_HeldObject.transform.position = m_HeldObjectLocation.transform.position;
+            m_HeldObject.transform.SetParent(m_HeldObjectLocation);
+            // Disable rigibody
+            m_HeldObject.GetComponent<Rigidbody>().isKinematic = true;
+        } else {
+            // Drop item
+            m_HeldObject.transform.SetParent(null);
+            m_HeldObject.GetComponent<Rigidbody>().isKinematic = false;
+            m_HeldObject = null;
+        }
     }
 
     // Sets the player's vertical velocity 
@@ -444,5 +450,26 @@ public class PlayerController : MonoBehaviour {
         m_Animator.ResetTrigger("Idle");
         m_Animator.ResetTrigger("Run");
         print("SetPlayerVerticalVelocity");
+    }
+
+    // Finds the closest holdable object
+    private GameObject GetClosestHoldableItem() {
+        Collider[] nearbyObjects = Physics.OverlapSphere(transform.position, m_fPickupRadius);
+        GameObject nearest = null;
+        float fDistanceToNearest = 1000.0f;
+
+        // Iterate through and check distances
+        foreach(Collider item in nearbyObjects) {
+            if (!item.CompareTag("HoldableItem") || item.transform.position.y > transform.position.y) {
+                continue;
+            } else {
+                float fItemDistance = (item.transform.position - transform.position).sqrMagnitude;
+                if(fItemDistance < fDistanceToNearest) {
+                    fDistanceToNearest = fItemDistance;
+                    nearest = item.gameObject;
+                }
+            }
+        }
+        return nearest;
     }
 }

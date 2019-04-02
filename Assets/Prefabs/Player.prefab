@@ -400,6 +400,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: VFXParent_Spin
       objectReference: {fileID: 0}
+    - target: {fileID: 5186681316471416203, guid: 131a41e45154d2241b121d3d67053cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 48606528305578906, guid: 131a41e45154d2241b121d3d67053cf3,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -53,6 +53,7 @@ public class stoneArc : MonoBehaviour
         //}
     }
 
+    // Solve the line renderer's coordinates
     void SolveAndProjectArc()
     {
         Vector3[] newLoctation = new Vector3[size];
@@ -65,6 +66,8 @@ public class stoneArc : MonoBehaviour
         lineRend.positionCount = newLoctation.Length;
         lineRend.SetPositions(newLoctation);
     }
+
+    // Calculates the next point in the spline
     Vector3 GetArcPoint(float i, float max)
     {
         Vector3 currentPoint;

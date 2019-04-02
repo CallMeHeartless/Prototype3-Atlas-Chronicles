@@ -4,35 +4,29 @@ using UnityEngine;
 
 public class pickUp : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private bool m_bIsCollected = false;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
+        if (other.CompareTag("Player") && !m_bIsCollected){
+            // Flag as collected
+            m_bIsCollected = true;
 
-
-            if (gameObject.CompareTag("PrimaryPickUp"))
-            {
+            if (gameObject.CompareTag("PrimaryPickUp")){
                 GameStats.MapsBoard[GameStats.LevelLoctation]++;
             }
-            else
-            {
-                if (gameObject.CompareTag("SecondayPickUp"))
-                {
+            else{
+                if (gameObject.CompareTag("SecondayPickUp")){
                     GameStats.NoteBoard[GameStats.LevelLoctation]++;
+                    GetComponentInChildren<Animator>().SetTrigger("Collect");
                 }
             }
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
         }
     }
+
+    public void DestroyPickup() {
+        Destroy(gameObject);
+    }
+
+
 }
