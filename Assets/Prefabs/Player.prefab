@@ -142,6 +142,7 @@ MonoBehaviour:
     type: 3}
   m_vecTeleportMarkerOffset: {x: 0, y: 0, z: 0}
   m_HeldObjectLocation: {fileID: 3956282232873457402}
+  m_fThrowSpeed: 10
 --- !u!136 &7403613506105527863
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -378,7 +379,7 @@ PrefabInstance:
     - target: {fileID: 85355236720757537, guid: 2537303a9581f70409c2717f3ae5a193,
         type: 3}
       propertyPath: maxVel
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2537303a9581f70409c2717f3ae5a193, type: 3}

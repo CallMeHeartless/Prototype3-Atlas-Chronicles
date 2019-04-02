@@ -45,11 +45,10 @@ public class stoneArc : MonoBehaviour
         {
             SolveAndProjectArc();
         }
-        //if (Input.GetKeyDown(KeyCode.E))
-        //{
-        //    GameObject newStone = GameObject.Instantiate(stone,transform.position,transform.rotation);
+        //if (Input.GetKeyDown(KeyCode.E)) {
+        //    GameObject newStone = GameObject.Instantiate(stone, transform.position, transform.rotation);
         //    float anglechange = Mathf.Tan(Mathf.Deg2Rad * m_fAngle);
-        //    newStone.GetComponent<Rigidbody>().AddForce(new Vector3(-(velcoity * anglechange) + velcoity * increaser, velcoity * anglechange* increaser, 0), ForceMode.Acceleration);
+        //    newStone.GetComponent<Rigidbody>().AddForce(new Vector3(-(m_fForwardVelocity * anglechange) + m_fForwardVelocity * increaser, m_fForwardVelocity * anglechange * increaser, 0), ForceMode.Acceleration);
         //}
     }
 
@@ -100,11 +99,14 @@ public class stoneArc : MonoBehaviour
 
         float fFreeLookY = m_FreeLookReference.m_YAxis.Value;
         m_fAngle = Mathf.Lerp(m_fMinAngle, m_fMaxAngle, 1.0f - fFreeLookY);
-        //print(m_fAngle);
     }
 
     // Gets the rotation
     public float GetArcRotation() {
-        return m_fRotation;
+        return m_fRotation * Mathf.Rad2Deg;
+    }
+
+    public void SetRotation(float _fRotation) {
+        m_fRotation = _fRotation * Mathf.Deg2Rad;
     }
 }
