@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour {
     private string m_strTeleportButton = "BButton";
     private string m_strAimHeldObjectButton = "XBoxR2";
     private string m_strAimButton = "XBoxL2";
+    private string m_strPickupItemButton = "L1";
 
     // Movement variables
     [Header("Movement Variables")]
@@ -67,6 +68,7 @@ public class PlayerController : MonoBehaviour {
     private GameObject m_TeleportMarker; // Object to be instantiated and moved accordingly
     private GameObject m_SwitchTarget;
     private GameObject m_HeldObject;
+    private bool m_bIsAiming = false;
     [SerializeField]
     private Transform m_HeldObjectLocation;
 #endregion
@@ -282,12 +284,20 @@ public class PlayerController : MonoBehaviour {
         else if (Input.GetButtonDown(m_strSwitchButton)) {
             if (m_SwitchTarget) {
                 SwitchWithTarget();
-            } else {
+            } else if(!m_HeldObject){
                 m_Animator.SetTrigger("Tag");
             }
         }
-
+        // Toggle the projectile arc
         AimHeldObject();
+        // Pickup or throw an item
+        if (Input.GetButtonDown(m_strPickupItemButton)) {
+            if (m_bIsAiming) {
+                ThrowHeldObject();
+            } else {
+                GrabObject();
+            }
+        }
     }
 
     private void TeleportToLocation(Vector3 _vecTargetLocation) {
@@ -322,8 +332,10 @@ public class PlayerController : MonoBehaviour {
         if (!m_HeldObject) {
             return;
         }
+        m_TeleportMarker.transform.position = m_HeldObject.transform.position;
         m_TeleportMarker.transform.SetParent(m_HeldObject.transform);
         m_TeleportMarker.SetActive(true);
+        m_bTeleportMarkerDown = true;
     }
 
     private void TeleportToTeleportMarker() {
@@ -355,12 +367,22 @@ public class PlayerController : MonoBehaviour {
         m_SwitchTarget = _switchTarget;
     }
 
-    public void ThrowHeldObject(Vector3 _vecVelocity) {
+    public void ThrowHeldObject() {
         if (!m_HeldObject) {
             return;
         }
         m_HeldObject.transform.SetParent(null);
         Rigidbody heldObjectRb = m_HeldObject.GetComponent<Rigidbody>();
+        heldObjectRb.isKinematic = false;
+        // Get velocity
+        LineRenderer lineRenderer = m_ProjectileArc.GetComponent<LineRenderer>();
+        Vector3 vecVelocity = lineRenderer.GetPosition(1) - lineRenderer.GetPosition(0);
+        heldObjectRb.velocity = vecVelocity * 20.0f;
+        m_HeldObject = null;
+        m_bIsAiming = false;
+        m_ProjectileArc.SetActive(false); // Consider removing depending on how input will be handled
+        // Animation
+        m_Animator.SetTrigger("Throw");
     }
 
     // Show the projectile arc while the player is holding down the aim button || CHANGE CAMERA 
@@ -369,16 +391,48 @@ public class PlayerController : MonoBehaviour {
             return;
         }
 
-        if (Input.GetAxis(m_strAimButton) <0.0f && !m_ProjectileArc.activeSelf){
-            m_ProjectileArc.SetActive(true);
+        if (Input.GetAxis(m_strAimButton) <0.0f ) {
+            ToggleAiming(true);
+            //float fCameraYRotation = m_CameraReference.transform.rotation.eulerAngles.y;
+            transform.rotation = Quaternion.AngleAxis(m_ProjectileArc.GetComponent<stoneArc>().GetArcRotation(), Vector3.up);
+            //transform.rotation = m_ProjectileArc.transform.rotation;
         }
         else if(m_ProjectileArc.activeSelf){
+            ToggleAiming(false);
+        }
+    }
+
+    // Changes parameters for when the player is / is not aiming
+    private void ToggleAiming(bool _bState) {
+        if(m_bIsAiming == _bState) {
+            return;
+        }
+        m_bIsAiming = _bState;
+        if (m_bIsAiming) {
+            m_Animator.SetTrigger("Aim");
+            m_ProjectileArc.SetActive(true);
+        } else {
+            m_Animator.ResetTrigger("Aim");
+            m_Animator.SetTrigger("Cancel");
             m_ProjectileArc.SetActive(false);
         }
     }
 
     private void GrabObject() {
-
+            // Pick up the item
+            if (!m_HeldObject) {
+                GameObject testItem = GameObject.Find("HoldableItemTest");  // Test object
+                m_HeldObject = testItem;
+                m_HeldObject.transform.position = m_HeldObjectLocation.transform.position;
+                m_HeldObject.transform.SetParent(m_HeldObjectLocation);
+                // Disable rigibody
+                m_HeldObject.GetComponent<Rigidbody>().isKinematic = true;
+            } else {
+                // Drop item
+                m_HeldObject.transform.SetParent(null);
+                m_HeldObject.GetComponent<Rigidbody>().isKinematic = false;
+                m_HeldObject = null;
+            }
     }
 
     // Sets the player's vertical velocity 

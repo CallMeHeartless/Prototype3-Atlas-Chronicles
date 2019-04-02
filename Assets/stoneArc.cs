@@ -56,10 +56,8 @@ public class stoneArc : MonoBehaviour
     void SolveAndProjectArc()
     {
         Vector3[] newLoctation = new Vector3[size];
-        for (int i = 1; i < size; i++)
+        for (int i = 0; i < size; i++)
         {
-            //newLoctation[i] = new Vector3(i * velcoity, ()+2, 0);
-            //float a = velcoity * velcoity * Mathf.Sin(2 * (Mathf.Deg2Rad * angle)) / 9.81f;
             newLoctation[i] = GetArcPoint((float)i/ (float)size, maxVel);
         }
        
@@ -102,4 +100,8 @@ public class stoneArc : MonoBehaviour
         //print(m_fAngle);
     }
 
+    // Gets the rotation
+    public float GetArcRotation() {
+        return m_fRotation;
+    }
 }
