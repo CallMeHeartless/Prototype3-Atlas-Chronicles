@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c0c0a8ebc958f7f4a987948936e609eb
+guid: 2884615d36595574bbeb1f60a05d2532
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -7,82 +7,90 @@ ModelImporter:
     100002: Base HumanBrushes
     100004: Base HumanHead
     100006: Base HumanInkWell
-    100008: Base HumanLArmCollarbone
-    100010: Base HumanLArmDigit11
-    100012: Base HumanLArmDigit12
-    100014: Base HumanLArmDigit13
-    100016: Base HumanLArmDigit21
-    100018: Base HumanLArmDigit22
-    100020: Base HumanLArmForearm
-    100022: Base HumanLArmPalm
-    100024: Base HumanLArmUpperarm
-    100026: Base HumanLLegCalf
-    100028: Base HumanLLegFoot
-    100030: Base HumanLLegThigh
-    100032: Base HumanNeck1
-    100034: Base HumanNeck2
-    100036: Base HumanPelvis
-    100038: Base HumanRCalf
-    100040: Base HumanRCollarbone
-    100042: Base HumanRDigit11
-    100044: Base HumanRDigit12
-    100046: Base HumanRDigit13
-    100048: Base HumanRDigit21
-    100050: Base HumanRDigit22
-    100052: Base HumanRFoot
-    100054: Base HumanRForearm
-    100056: Base HumanRibcage
-    100058: Base HumanRPalm
-    100060: Base HumanRThigh
-    100062: Base HumanRUpperarm
-    100064: Base HumanScroll00
-    100066: Base HumanScroll01
-    100068: Base HumanScroll02
-    100070: Base HumanScroll03
-    100072: Base HumanSpine1
-    100074: Base HumanSpine2
-    100076: Base HumanSpine3
-    100078: Base HumanSpine4
+    100008: Base HumanL_ShoulderPad
+    100010: Base HumanLArmCollarbone
+    100012: Base HumanLArmDigit11
+    100014: Base HumanLArmDigit12
+    100016: Base HumanLArmDigit13
+    100018: Base HumanLArmDigit21
+    100020: Base HumanLArmDigit22
+    100022: Base HumanLArmForearm
+    100024: Base HumanLArmPalm
+    100026: Base HumanLArmUpperarm
+    100028: Base HumanLLegCalf
+    100030: Base HumanLLegFoot
+    100032: Base HumanLLegThigh
+    100034: Base HumanNeck1
+    100036: Base HumanNeck2
+    100038: Base HumanPelvis
+    100040: Base HumanR_ShoulderPad
+    100042: Base HumanRCalf
+    100044: Base HumanRCollarbone
+    100046: Base HumanRDigit11
+    100048: Base HumanRDigit12
+    100050: Base HumanRDigit13
+    100052: Base HumanRDigit21
+    100054: Base HumanRDigit22
+    100056: Base HumanRFoot
+    100058: Base HumanRForearm
+    100060: Base HumanRibcage
+    100062: Base HumanRPalm
+    100064: Base HumanRThigh
+    100066: Base HumanRUpperarm
+    100068: Base HumanScroll00
+    100070: Base HumanScroll01
+    100072: Base HumanScroll02
+    100074: Base HumanScroll03
+    100076: Base HumanScroll03 1
+    100078: Base HumanScroll05
+    100080: Base HumanSpine1
+    100082: Base HumanSpine2
+    100084: Base HumanSpine3
+    100086: Base HumanSpine4
     400000: //RootNode
     400002: Base HumanBrushes
     400004: Base HumanHead
     400006: Base HumanInkWell
-    400008: Base HumanLArmCollarbone
-    400010: Base HumanLArmDigit11
-    400012: Base HumanLArmDigit12
-    400014: Base HumanLArmDigit13
-    400016: Base HumanLArmDigit21
-    400018: Base HumanLArmDigit22
-    400020: Base HumanLArmForearm
-    400022: Base HumanLArmPalm
-    400024: Base HumanLArmUpperarm
-    400026: Base HumanLLegCalf
-    400028: Base HumanLLegFoot
-    400030: Base HumanLLegThigh
-    400032: Base HumanNeck1
-    400034: Base HumanNeck2
-    400036: Base HumanPelvis
-    400038: Base HumanRCalf
-    400040: Base HumanRCollarbone
-    400042: Base HumanRDigit11
-    400044: Base HumanRDigit12
-    400046: Base HumanRDigit13
-    400048: Base HumanRDigit21
-    400050: Base HumanRDigit22
-    400052: Base HumanRFoot
-    400054: Base HumanRForearm
-    400056: Base HumanRibcage
-    400058: Base HumanRPalm
-    400060: Base HumanRThigh
-    400062: Base HumanRUpperarm
-    400064: Base HumanScroll00
-    400066: Base HumanScroll01
-    400068: Base HumanScroll02
-    400070: Base HumanScroll03
-    400072: Base HumanSpine1
-    400074: Base HumanSpine2
-    400076: Base HumanSpine3
-    400078: Base HumanSpine4
+    400008: Base HumanL_ShoulderPad
+    400010: Base HumanLArmCollarbone
+    400012: Base HumanLArmDigit11
+    400014: Base HumanLArmDigit12
+    400016: Base HumanLArmDigit13
+    400018: Base HumanLArmDigit21
+    400020: Base HumanLArmDigit22
+    400022: Base HumanLArmForearm
+    400024: Base HumanLArmPalm
+    400026: Base HumanLArmUpperarm
+    400028: Base HumanLLegCalf
+    400030: Base HumanLLegFoot
+    400032: Base HumanLLegThigh
+    400034: Base HumanNeck1
+    400036: Base HumanNeck2
+    400038: Base HumanPelvis
+    400040: Base HumanR_ShoulderPad
+    400042: Base HumanRCalf
+    400044: Base HumanRCollarbone
+    400046: Base HumanRDigit11
+    400048: Base HumanRDigit12
+    400050: Base HumanRDigit13
+    400052: Base HumanRDigit21
+    400054: Base HumanRDigit22
+    400056: Base HumanRFoot
+    400058: Base HumanRForearm
+    400060: Base HumanRibcage
+    400062: Base HumanRPalm
+    400064: Base HumanRThigh
+    400066: Base HumanRUpperarm
+    400068: Base HumanScroll00
+    400070: Base HumanScroll01
+    400072: Base HumanScroll02
+    400074: Base HumanScroll03
+    400076: Base HumanScroll03 1
+    400078: Base HumanScroll05
+    400080: Base HumanSpine1
+    400082: Base HumanSpine2
+    400084: Base HumanSpine3
+    400086: Base HumanSpine4
     7400000: Pickup
     9500000: //RootNode
   externalObjects: {}
