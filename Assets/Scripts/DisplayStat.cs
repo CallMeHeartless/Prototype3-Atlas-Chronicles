@@ -9,10 +9,11 @@ public class DisplayStat : MonoBehaviour
     public GameObject maps;
     public GameObject note;
     public GameObject[] Hearts;
+    public int HP;
     // Start is called before the first frame update
     void Start()
     {
-        newHealth(4);
+        newHealth(HP);
     }
 
     // Update is called once per frame

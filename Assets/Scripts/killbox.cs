@@ -18,9 +18,15 @@ public class killbox : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("hit");
         if (other.CompareTag("Player"))
         {
-            Debug.Log("reset");
+            Debug.Log("yes");
+            other.GetComponent<respawn>().playerRespawns();
+        }
+        else
+        {
+            Debug.Log("no");
         }
     }
 }

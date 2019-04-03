@@ -6,6 +6,7 @@ public class respawn : MonoBehaviour
 {
     public GameObject reset;
     public GameObject player;
+    bool goBack = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,11 +18,16 @@ public class respawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.y <= -30)
+        if (goBack)
         {
             Debug.Log("fun");
 
            player.transform.position = reset.transform.position;
+            goBack = false;
         }
+    }
+    public void playerRespawns()
+    {
+        goBack = true;
     }
 }
