@@ -409,7 +409,7 @@ public class PlayerController : MonoBehaviour {
             return;
         }
 
-        if (Input.GetAxis(m_strAimButton) <0.0f ) {
+        if (Input.GetAxis(m_strAimButton) <0.0f || Input.GetKey(KeyCode.C)) {
             ToggleAiming(true);
             Vector3 vecCameraRotation = m_CameraReference.transform.rotation.eulerAngles;
             // Line up with camera
