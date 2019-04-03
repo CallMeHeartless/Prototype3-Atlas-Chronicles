@@ -1,21 +1,14 @@
 fileFormatVersion: 2
-guid: c9464d1a8333e204bb94c26fcac66219
+guid: c201264eab4b7a0459509c458473824c
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
-    100002: SM_Ramp
-    100004: SM_RampBrokenPart
     400000: //RootNode
-    400002: SM_Ramp
-    400004: SM_RampBrokenPart
     2100000: lambert1
-    2300000: SM_Ramp
-    2300002: SM_RampBrokenPart
-    3300000: SM_Ramp
-    3300002: SM_RampBrokenPart
-    4300000: SM_Ramp
-    4300002: SM_RampBrokenPart
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: SM_TempleTreeBase
   externalObjects: {}
   materials:
     importMaterials: 1
