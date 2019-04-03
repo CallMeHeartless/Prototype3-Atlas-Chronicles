@@ -1,14 +1,23 @@
 fileFormatVersion: 2
-guid: 68a804c5e4398254899fbd73d868757b
+guid: 7bb8ded8a4a352e4cb26ff6fc28d7981
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2100000: lambert1
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: SM_Awning
+    100000: sm_IslandWater
+    100002: //RootNode
+    100004: sm_StatueIsland
+    400000: sm_IslandWater
+    400002: //RootNode
+    400004: sm_StatueIsland
+    2100000: blinn1
+    2100002: blinn2
+    2100004: blinn3
+    2300000: sm_IslandWater
+    2300002: sm_StatueIsland
+    3300000: sm_IslandWater
+    3300002: sm_StatueIsland
+    4300000: sm_StatueIsland
+    4300002: sm_IslandWater
   externalObjects: {}
   materials:
     importMaterials: 0
@@ -71,7 +80,7 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  importAnimation: 0
+  importAnimation: 1
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2
