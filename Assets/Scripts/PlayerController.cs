@@ -72,6 +72,8 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private Transform m_HeldObjectLocation;
     private float m_fPickupRadius = 0.95f;
+    [SerializeField]
+    private float m_fThrowSpeed = 10.0f;
 #endregion
 
     // Start is called before the first frame update
@@ -378,7 +380,10 @@ public class PlayerController : MonoBehaviour {
         // Get velocity
         LineRenderer lineRenderer = m_ProjectileArc.GetComponent<LineRenderer>();
         Vector3 vecVelocity = lineRenderer.GetPosition(1) - lineRenderer.GetPosition(0);
-        heldObjectRb.velocity = vecVelocity * 20.0f;
+        heldObjectRb.velocity = vecVelocity.normalized * m_fThrowSpeed;// Mathf.Sqrt(m_fThrowSpeed * m_fThrowSpeed + m_fThrowSpeed * m_fThrowSpeed);//m_fThrowSpeed;
+
+        m_HeldObject.GetComponent<HoldableItem>().ToggleCollider();
+        //heldObjectRb.AddForce(vecVelocity.normalized * m_fThrowSpeed, ForceMode.Acceleration);
         m_HeldObject = null;
         m_bIsAiming = false;
         m_ProjectileArc.SetActive(false); // Consider removing depending on how input will be handled
@@ -394,9 +399,10 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetAxis(m_strAimButton) <0.0f ) {
             ToggleAiming(true);
-            //float fCameraYRotation = m_CameraReference.transform.rotation.eulerAngles.y;
-            transform.rotation = Quaternion.AngleAxis(m_ProjectileArc.GetComponent<stoneArc>().GetArcRotation(), Vector3.up);
-            //transform.rotation = m_ProjectileArc.transform.rotation;
+            Vector3 vecCameraRotation = m_CameraReference.transform.rotation.eulerAngles;
+            // Line up with camera
+            transform.rotation = Quaternion.Euler(0.0f, vecCameraRotation.y, 0.0f);
+            m_ProjectileArc.GetComponent<stoneArc>().SetRotation(vecCameraRotation.y);
         }
         else if(m_ProjectileArc.activeSelf){
             ToggleAiming(false);

@@ -133,7 +133,7 @@ MonoBehaviour:
   m_CameraReference: {fileID: 0}
   m_ProjectileArc: {fileID: 0}
   m_fMovementSpeed: 5
-  m_fJumpPower: 40
+  m_fJumpPower: 55
   m_fCoyoteTime: 0.5
   m_fFloatTime: 2
   m_fFloatGravityReduction: 0.8
@@ -142,6 +142,7 @@ MonoBehaviour:
     type: 3}
   m_vecTeleportMarkerOffset: {x: 0, y: 0, z: 0}
   m_HeldObjectLocation: {fileID: 3956282232873457402}
+  m_fThrowSpeed: 10
 --- !u!136 &7403613506105527863
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -378,7 +379,7 @@ PrefabInstance:
     - target: {fileID: 85355236720757537, guid: 2537303a9581f70409c2717f3ae5a193,
         type: 3}
       propertyPath: maxVel
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2537303a9581f70409c2717f3ae5a193, type: 3}
@@ -460,11 +461,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2235474557101074349, guid: 131a41e45154d2241b121d3d67053cf3,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6298826857812320058, guid: 131a41e45154d2241b121d3d67053cf3,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -493,6 +489,11 @@ PrefabInstance:
     - target: {fileID: 6298826857812320058, guid: 131a41e45154d2241b121d3d67053cf3,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2235474557101074349, guid: 131a41e45154d2241b121d3d67053cf3,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

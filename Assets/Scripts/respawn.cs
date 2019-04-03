@@ -10,7 +10,7 @@ public class respawn : MonoBehaviour
     void Start()
     {
 
-        reset = GameObject.FindGameObjectWithTag("spawns");
+        //reset = GameObject.FindGameObjectWithTag("spawns");
         player = GameObject.FindGameObjectWithTag("Player");   
     }
 

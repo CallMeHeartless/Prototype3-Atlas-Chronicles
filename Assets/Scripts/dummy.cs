@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class dummy : MonoBehaviour
 {
+    public GameObject StartPoint;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +17,7 @@ public class dummy : MonoBehaviour
         if (gameObject.GetComponent<respawn>() == null)
         {
             gameObject.AddComponent<respawn>();
+            GetComponent<respawn>().reset= StartPoint;
         }
        
     }
