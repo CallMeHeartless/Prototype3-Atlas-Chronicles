@@ -17,10 +17,11 @@ public class pickUp : MonoBehaviour
             else{
                 if (gameObject.CompareTag("SecondayPickUp")){
                     GameStats.NoteBoard[GameStats.LevelLoctation]++;
-                    GetComponentInChildren<Animator>().SetTrigger("Collect");
+                    
                 }
             }
             //gameObject.SetActive(false);
+            GetComponentInChildren<Animator>().SetTrigger("Collect");
         }
     }
 
