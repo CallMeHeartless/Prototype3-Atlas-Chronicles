@@ -35,6 +35,7 @@ public class SwitchTagController : MonoBehaviour
             transform.SetParent(m_AttachedObject);
             m_bIsMoving = false;
             m_PlayerReference.SetSwitchTarget(m_AttachedObject.gameObject);
+            m_AttachedObject.GetComponent<Switchable>().Tag();
         } else if(!other.CompareTag("Player")){
             // Destroy animation? DO NOT DESTROY OBJECT
             DetachFromObject();
@@ -44,6 +45,7 @@ public class SwitchTagController : MonoBehaviour
     // Removes the switch tag from the object
     public void DetachFromObject() {
         transform.SetParent(null);
+        m_AttachedObject.GetComponent<Switchable>().DeTag();
         m_AttachedObject = null;
         gameObject.SetActive(false);
     }
