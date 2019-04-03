@@ -1,47 +1,15 @@
 fileFormatVersion: 2
-guid: 3c219547083b527439ab02f4ee8738b9
+guid: b3e60c4e33510604585468e09a3b8586
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Cube
-    100002: Cube_1
-    100004: //RootNode
-    100006: pCube11
-    100008: pCube7
-    100010: pCube8
-    100012: pCube9
-    100014: pPlane2
-    400000: Cube
-    400002: Cube_1
-    400004: //RootNode
-    400006: pCube11
-    400008: pCube7
-    400010: pCube8
-    400012: pCube9
-    400014: pPlane2
-    2100000: Default_Prototype
-    2100002: lambert1
-    2300000: Cube
-    2300002: Cube_1
-    2300004: pCube11
-    2300006: pCube7
-    2300008: pCube8
-    2300010: pCube9
-    2300012: pPlane2
-    3300000: Cube
-    3300002: Cube_1
-    3300004: pCube11
-    3300006: pCube7
-    3300008: pCube8
-    3300010: pCube9
-    3300012: pPlane2
-    4300000: Cube
-    4300002: Cube_1
-    4300004: pCube7
-    4300006: pCube8
-    4300008: pCube9
-    4300010: pPlane2
-    4300012: pCube11
+    100000: //RootNode
+    400000: //RootNode
+    2100000: ground
+    2100002: Grass
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: pCube12
   externalObjects: {}
   materials:
     importMaterials: 1
