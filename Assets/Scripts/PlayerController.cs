@@ -50,6 +50,8 @@ public class PlayerController : MonoBehaviour {
     private float m_fFloatGravityReduction = 0.8f;
     private bool m_bIsFloating = false;
     private bool m_bIsWading = false;
+    [SerializeField]
+    private GameObject[] m_GlideTrails;
 
     // Combat variables
     [Header("Combat Variables")]
@@ -248,9 +250,19 @@ public class PlayerController : MonoBehaviour {
             // Level out the player's upward velocity to begin gliding
             m_fVerticalVelocity = 0.0f;
             m_Animator.SetTrigger("Glide");
+            if (m_GlideTrails[0]) {
+                foreach(GameObject trail in m_GlideTrails) {
+                    trail.SetActive(true);
+                }
+            }
         } else {
             //m_Animator.ResetTrigger("Glide");
             m_Animator.SetTrigger("Jump");
+            if (m_GlideTrails[0]) {
+                foreach (GameObject trail in m_GlideTrails) {
+                    trail.SetActive(false);
+                }
+            }
         }
     }
 
