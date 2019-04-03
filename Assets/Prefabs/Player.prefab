@@ -148,6 +148,7 @@ MonoBehaviour:
   m_vecTeleportMarkerOffset: {x: 0, y: 0, z: 0}
   m_HeldObjectLocation: {fileID: 3956282232873457402}
   m_fThrowSpeed: 10
+  m_TeleportParticles: {fileID: 4592982801684385438}
 --- !u!136 &7403613506105527863
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -684,8 +685,19 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 6096146413826344524, guid: 131a41e45154d2241b121d3d67053cf3,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 131a41e45154d2241b121d3d67053cf3, type: 3}
+--- !u!1 &4592982801684385438 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5186681316471416203, guid: 131a41e45154d2241b121d3d67053cf3,
+    type: 3}
+  m_PrefabInstance: {fileID: 8666973709603400469}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8713314958204741775 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 48606528305578906, guid: 131a41e45154d2241b121d3d67053cf3,

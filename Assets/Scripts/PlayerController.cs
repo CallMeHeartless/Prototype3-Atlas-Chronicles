@@ -76,6 +76,8 @@ public class PlayerController : MonoBehaviour {
     private float m_fPickupRadius = 0.95f;
     [SerializeField]
     private float m_fThrowSpeed = 10.0f;
+    [SerializeField]
+    private GameObject m_TeleportParticles;
 #endregion
 
     // Start is called before the first frame update
@@ -317,7 +319,7 @@ public class PlayerController : MonoBehaviour {
 
     private void TeleportToLocation(Vector3 _vecTargetLocation) {
         // Play VFX
-
+        TeleportParticles();
         // Update position
         transform.position = _vecTargetLocation;
 
@@ -357,6 +359,7 @@ public class PlayerController : MonoBehaviour {
         if (!m_bTeleportMarkerDown || !m_TeleportMarker || m_HeldObject) {
             return; // Error animation / noise
         }
+
         TeleportToLocation(m_TeleportMarker.transform.position);
         // Disable teleport marker
         m_TeleportMarker.SetActive(false);
@@ -367,6 +370,7 @@ public class PlayerController : MonoBehaviour {
         if (!m_SwitchTarget) {
             return;
         }
+        TeleportParticles();
 
         // Switch positions
         Vector3 vecPlayerPosition = transform.position;
@@ -489,5 +493,18 @@ public class PlayerController : MonoBehaviour {
             }
         }
         return nearest;
+    }
+
+    private void TeleportParticles() {
+        if (!m_TeleportParticles) {
+            return;
+        }
+        m_TeleportParticles.SetActive(true);
+        StartCoroutine(DisableTeleportParticles());
+    }
+
+    private IEnumerator DisableTeleportParticles() {
+        yield return new WaitForSeconds(2.0f);
+        m_TeleportParticles.SetActive(false);
     }
 }

@@ -120,11 +120,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 48606528305578906}
     m_Modifications:
-    - target: {fileID: 6552263159134722230, guid: 3a78f7889fe325c4491d287a51deba39,
-        type: 3}
-      propertyPath: m_Name
-      value: VFX_Teleport
-      objectReference: {fileID: 0}
     - target: {fileID: 4904373571771224746, guid: 3a78f7889fe325c4491d287a51deba39,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -178,6 +173,16 @@ PrefabInstance:
     - target: {fileID: 4904373571771224746, guid: 3a78f7889fe325c4491d287a51deba39,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6552263159134722230, guid: 3a78f7889fe325c4491d287a51deba39,
+        type: 3}
+      propertyPath: m_Name
+      value: VFX_Teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188116798977805276, guid: 3a78f7889fe325c4491d287a51deba39,
+        type: 3}
+      propertyPath: VelocityModule.enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
