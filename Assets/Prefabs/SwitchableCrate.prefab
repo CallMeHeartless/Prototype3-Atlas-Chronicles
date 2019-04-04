@@ -154,3 +154,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_bChangeMaterialOnTag: 0
   m_AlternateMaterial: {fileID: 2100000, guid: 0056a4e4711bd8e428e64f1f372a412b, type: 2}
+  m_Material: {fileID: 2100000, guid: 4ca52f4df751c7c4b90ace75881a7df5, type: 2}
