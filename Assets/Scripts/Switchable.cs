@@ -16,13 +16,13 @@ public class Switchable : MonoBehaviour
 
     public void Tag() {
         if (m_bChangeMaterialOnTag) {
-            GetComponent<MeshRenderer>().material = m_AlternateMaterial;
+            GetComponentInChildren<MeshRenderer>().material = m_AlternateMaterial;
         }
     }
 
     public void DeTag() {
         if (m_bChangeMaterialOnTag) {
-            GetComponent<MeshRenderer>().material = m_Material;
+            GetComponentInChildren<MeshRenderer>().material = m_Material;
         }
     }
 
