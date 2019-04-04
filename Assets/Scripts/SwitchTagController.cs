@@ -45,7 +45,10 @@ public class SwitchTagController : MonoBehaviour
     // Removes the switch tag from the object
     public void DetachFromObject() {
         transform.SetParent(null);
-        m_AttachedObject.GetComponent<Switchable>().DeTag();
+        if (m_AttachedObject) {
+            m_AttachedObject.GetComponent<Switchable>().DeTag();
+        }
+       
         m_AttachedObject = null;
         gameObject.SetActive(false);
     }
