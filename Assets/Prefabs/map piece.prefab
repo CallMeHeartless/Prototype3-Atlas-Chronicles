@@ -84,8 +84,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.1565218, y: 0.50787735, z: 0.5209193}
-  m_Center: {x: 0.0013136864, y: -0.010528803, z: 0.003881216}
+  m_Size: {x: 0.1565218, y: 0.66936874, z: 0.7248306}
+  m_Center: {x: 0.0013136864, y: -0.02755928, z: 0.0131492615}
 --- !u!54 &1620328785967061002
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -199,6 +199,18 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 18b2cede125664c468ee3e1b5e6ed6af, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 18b2cede125664c468ee3e1b5e6ed6af, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 18b2cede125664c468ee3e1b5e6ed6af, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 18b2cede125664c468ee3e1b5e6ed6af, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 18b2cede125664c468ee3e1b5e6ed6af, type: 3}
       propertyPath: m_Materials.Array.data[0]
