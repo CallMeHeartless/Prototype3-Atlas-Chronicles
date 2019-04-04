@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CameraReference: {fileID: 0}
-  m_ProjectileArc: {fileID: 0}
+  m_ProjectileArc: {fileID: 4727328372385201593}
   m_fMovementSpeed: 5
   m_fJumpPower: 55
   m_fCoyoteTime: 0.5
@@ -507,6 +507,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2537303a9581f70409c2717f3ae5a193, type: 3}
+--- !u!1 &4727328372385201593 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 85355236720757542, guid: 2537303a9581f70409c2717f3ae5a193,
+    type: 3}
+  m_PrefabInstance: {fileID: 4662886121713235615}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4727328372385201596 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 85355236720757539, guid: 2537303a9581f70409c2717f3ae5a193,
@@ -684,11 +690,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 6096146413826344524, guid: 131a41e45154d2241b121d3d67053cf3,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 131a41e45154d2241b121d3d67053cf3, type: 3}

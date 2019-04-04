@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 113.3, y: -0.000011444}
+  m_AnchoredPosition: {x: 76.25, y: -0.000011444}
   m_SizeDelta: {x: 105, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2270327414249255804
@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.4002926, b: 0, a: 1}
+  m_Color: {r: 0.84313726, g: 0.3372549, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -263,7 +263,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3518113924666284860
 RectTransform:
   m_ObjectHideFlags: 0
@@ -449,7 +449,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 939, y: 462.6}
+  m_AnchoredPosition: {x: 1030, y: 439}
   m_SizeDelta: {x: 350, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3518113924905056863
@@ -473,7 +473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.4783347, b: 0, a: 1}
+  m_Color: {r: 0.84313726, g: 0.3372549, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -529,7 +529,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -854, y: 463}
+  m_AnchoredPosition: {x: -853, y: 454}
   m_SizeDelta: {x: 115, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3518113925273082357
@@ -553,7 +553,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.4002926, b: 0, a: 1}
+  m_Color: {r: 0.8396226, g: 0.33584908, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -702,6 +702,7 @@ MonoBehaviour:
   - {fileID: 5089470009347405557}
   - {fileID: 5552782378834238002}
   - {fileID: 2467296605490386216}
+  HP: 0
 --- !u!114 &1997827081846920049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1085,7 +1086,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.4783347, b: 0, a: 1}
+  m_Color: {r: 0.84313726, g: 0.3372549, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
